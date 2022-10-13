@@ -43,7 +43,7 @@ function Header() {
 
                             <h6 className="text-uppercase">Rooms</h6>
                             <ul className="megamenu-list list-unstyled">
-                              <li className="megamenu-list-item"><a className="megamenu-list-link" href="category-2-rooms.html">Category - Map on the right   </a></li>
+                              <li className="megamenu-list-item"><a className="megamenu-list-link" href="/category">Category - Map on the right   </a></li>
                             </ul>
                    
                           </div>

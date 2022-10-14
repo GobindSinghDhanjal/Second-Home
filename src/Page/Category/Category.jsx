@@ -2,6 +2,7 @@ import { TextField } from "@mui/material";
 import React from "react";
 import Header from "../components/Header";
 import Neighbour from "./components/Neighbour";
+import SortBy from "./components/SortBy";
 import SubCategory from "./components/SubCategory";
 
 function Category() {
@@ -163,14 +164,15 @@ function Category() {
                                 <p className="mb-3 mb-md-0"><strong>12</strong> results found</p>
                             </div>
                             <div>
-                                <label className="form-label me-2" for="form_sort">Sort by</label>
+                                <SortBy />
+                                {/* <label className="form-label me-2" for="form_sort">Sort by</label>
                                 <select className="selectpicker" name="sort" id="form_sort" data-style="btn-selectpicker" title="">
                                     <option value="sortBy_0">Most popular   </option>
                                     <option value="sortBy_1">Recommended   </option>
                                     <option value="sortBy_2">Newest   </option>
                                     <option value="sortBy_3">Oldest   </option>
                                     <option value="sortBy_4">Closest   </option>
-                                </select>
+                                </select> */}
                             </div>
                         </div>
                         <div className="row">
@@ -332,7 +334,9 @@ function Category() {
                     </div>
                     <div className="col-lg-6 map-side-lg pe-lg-0">
                         <div className="map-full shadow-left" id="categorySideMap"></div>
+                        
                     </div>
+                    
                 </div>
             </div>
         </div>

@@ -1,8 +1,38 @@
-import React from "react";
-import Form from "./Form";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux"
 import CloseIcon from '@mui/icons-material/Close';
+import { registerTourist } from "../../../Redux/user/tourist/touristAction";
 
 function Container() {
+
+  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPass, setConfirmPass] = useState('');
+
+  const dispatch = useDispatch();
+
+  function onSignUp(e) {
+
+    if(password===confirmPass){
+
+      console.log("matched");
+      const postData={
+        email,
+        username,
+        password
+      }
+
+      dispatch(registerTourist(postData));
+
+    }else{
+      console.log("not matched ");
+    }
+    e.preventDefault();
+  }
+
+
+
     return(
         <div className="container-fluid px-3">
         <div className="row min-vh-100">
@@ -12,26 +42,34 @@ function Container() {
                 <h2>Sign up</h2>
                 <p className="text-muted">His room, a proper human room although a little too small, lay peacefully between its four familiar walls. A collection of textile samples lay spread out on the table.</p>
               </div>
-              <form className="form-validate">
+              <form className="form-validate" onSubmit={onSignUp}>
                 <div className="mb-4">
-                  <label className="form-label" for="loginUsername"> Email Address</label>
-                  <input className="form-control" name="loginUsername" id="loginUsername" type="email" placeholder="name@address.com" autocomplete="off" required data-msg="Please enter your email"/>
+                  <label className="form-label" for="loginEmail"> Email Address</label>
+                  <input className="form-control" name="loginEmail" 
+                   value={email} onChange={(e)=>setEmail(e.target.value)} id="loginEmail" type="email" placeholder="name@address.com" autocomplete="off" required data-msg="Please enter your email"/>
+                </div>
+                <div className="mb-4">
+                  <label className="form-label" for="loginUsername"> Username</label>
+                  <input className="form-control" name="loginUsername" 
+                  value={username} onChange={(e)=>setUsername(e.target.value)} id="loginUsername" type="username" placeholder="username" autocomplete="off" required data-msg="Please enter your username"/>
                 </div>
                 <div className="mb-4">
                   <label className="form-label" for="loginPassword"> Password</label>
-                  <input className="form-control" name="loginPassword" id="loginPassword" placeholder="Password" type="password" required data-msg="Please enter your password"/>
+                  <input className="form-control" name="loginPassword"
+                  value={password} onChange={(e)=>setPassword(e.target.value)} id="loginPassword" placeholder="Password" type="password" required data-msg="Please enter your password"/>
                 </div>
                 <div className="mb-4">
                   <label className="form-label" for="loginPassword2"> Confirm your password</label>
-                  <input className="form-control" name="loginPassword2" id="loginPassword2" placeholder="Password" type="password" required data-msg="Please enter your password"/>
+                  <input className="form-control" name="loginPassword2"
+                  value={confirmPass} onChange={(e)=>setConfirmPass(e.target.value)} id="loginPassword2" placeholder="Password" type="password" required data-msg="Please enter your password"/>
                 </div>
                 <div className="d-grid gap-2">
                   <button className="btn btn-lg btn-primary" type="submit">Sign up</button>
                 </div>
                 <hr className="my-3 hr-text letter-spacing-2" data-content="OR" />
                 <div className="d-grid gap-2">
-                  <button className="btn btn btn-outline-primary btn-social"><i className="fa-2x fa-facebook-f fab btn-social-icon"> </i>Connect <span className="d-none d-sm-inline">with Facebook</span></button>
-                  <button className="btn btn btn-outline-muted btn-social"><i className="fa-2x fa-google fab btn-social-icon"> </i>Connect <span className="d-none d-sm-inline">with Google</span></button>
+                  <button type="button" className="btn btn btn-outline-primary btn-social"><i className="fa-2x fa-facebook-f fab btn-social-icon"> </i>Connect <span className="d-none d-sm-inline">with Facebook</span></button>
+                  <button type="button" className="btn btn btn-outline-muted btn-social"><i className="fa-2x fa-google fab btn-social-icon"> </i>Connect <span className="d-none d-sm-inline">with Google</span></button>
                 </div>
                 <hr className="my-4" />
                 <p className="text-sm text-muted">By signing up you agree to Directory's <a href="#">Terms and Conditions</a> and <a href="#">Privacy Policy</a>.</p>

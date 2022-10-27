@@ -1,2 +1,2 @@
 // export {buyCake} from "./cake/cakeAction";
-// export * from "./user/userAction";
+export * from "./user/tourist/touristAction";

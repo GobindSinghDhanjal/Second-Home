@@ -1,9 +1,8 @@
 import { combineReducers } from "redux";
-// import cakeReducer from "./cake/cakeReducer";
+import touristReducer from "./user/tourist/touristReducer";
 
 const rootReducer = combineReducers({
-    // cake: cakeReducer,
-    // user: userReducer
+    tourist: touristReducer
 })
 
 export default rootReducer;

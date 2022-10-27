@@ -19,16 +19,19 @@ import UserAdd4 from "./AddListing/UserAdd4";
 import UserAdd3 from "./AddListing/UserAdd3";
 import UserAdd5 from "./AddListing/UserAdd5";
 import Category from "./Category/Category";
+import { Provider } from "react-redux";
+import store from '../Redux/store';
 
 
 function App() {
-    return( <div>
+    return( 
+        <Provider store={store}>
+    <div>
      <BrowserRouter>
       <Routes>
 
          {/***************** HOME *****************/}
-          <Route path="/" element={<Home />} />
-
+          <Route path="/"  element={<Home />} />
 
 
          {/***************** ACCOUNT *****************/}
@@ -71,8 +74,8 @@ function App() {
 
       </Routes>
     </BrowserRouter>
-
     </div>
+    </Provider>
     );
 }
    

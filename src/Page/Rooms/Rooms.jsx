@@ -4,6 +4,8 @@ import Section1 from "./components/Section1";
 import Swiper from "./components/Swiper";
 
 function Rooms() {
+
+
     return(
         <div>
             <Header />

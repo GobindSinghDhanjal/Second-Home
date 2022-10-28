@@ -10,18 +10,15 @@ function SignIn(touristData) {
 
   const dispatch = useDispatch();
 
-  // console.log("data " +JSON.stringify(touristData.touristData.error));
-
 
   function onLogin(e) {
-    
-    // console.log("Email : "+email+"   Password: "+password);
     const postData = {
       username,
       password,
     };
 
     dispatch(loginTourist(postData));
+    console.log(touristData.touristData.tourists.username);
 
     e.preventDefault();
   }
@@ -41,7 +38,7 @@ function SignIn(touristData) {
                 />
                 <h2>Welcome back</h2>
               </div>
-              <form className="form-validate" onSubmit={onLogin}> 
+              <form className="form-validate" onSubmit={onLogin}>
                 <div className="mb-4">
                   <label className="form-label" for="loginUsername">
                     {" "}
@@ -69,7 +66,7 @@ function SignIn(touristData) {
                       </label>
                     </div>
                     <div className="col-auto">
-                      <a className="form-text small text-primary" href="#">
+                      <a className="form-text small text-primary" href="/">
                         Forgot password?
                       </a>
                     </div>
@@ -82,7 +79,8 @@ function SignIn(touristData) {
                     type="password"
                     required
                     data-msg="Please enter your password"
-                    value={password} onChange={(e)=>setPassword(e.target.value)}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
                 <div className="mb-4">
@@ -185,11 +183,10 @@ function SignIn(touristData) {
   );
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    touristData: state.tourist
+    touristData: state.tourist,
   };
 };
 
 export default connect(mapStateToProps)(SignIn);
-// export default SignIn;

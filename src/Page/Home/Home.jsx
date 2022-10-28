@@ -9,8 +9,8 @@ import Banner5 from "./components/Banner5";
 import Banner6 from "./components/Banner6";
 import Banner7 from "./components/Banner7";
 
-
 function Home() {
+
     return(
         <div>
             <Header />

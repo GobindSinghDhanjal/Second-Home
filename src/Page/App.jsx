@@ -21,13 +21,20 @@ import UserAdd5 from "./AddListing/UserAdd5";
 import Category from "./Category/Category";
 import { Provider } from "react-redux";
 import store from '../Redux/store';
+import Auth0ProviderWithHistory from "../auth0Provider";
+import { ReactSession } from 'react-client-session';
+ReactSession.setStoreType("localStorage");
 
 
 function App() {
     return( 
+     
         <Provider store={store}>
+             
     <div>
+
      <BrowserRouter>
+     <Auth0ProviderWithHistory>
       <Routes>
 
          {/***************** HOME *****************/}
@@ -71,11 +78,14 @@ function App() {
           <Route path="/booking-details" element={<BookingDetails />} />
           <Route path="/invoice" element={<Invoice />} />
         
-
       </Routes>
+      </Auth0ProviderWithHistory>
     </BrowserRouter>
+   
     </div>
+
     </Provider>
+
     );
 }
    

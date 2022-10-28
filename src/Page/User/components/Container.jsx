@@ -72,7 +72,7 @@ function Container() {
                   <button type="button" className="btn btn btn-outline-muted btn-social"><i className="fa-2x fa-google fab btn-social-icon"> </i>Connect <span className="d-none d-sm-inline">with Google</span></button>
                 </div>
                 <hr className="my-4" />
-                <p className="text-sm text-muted">By signing up you agree to Directory's <a href="#">Terms and Conditions</a> and <a href="#">Privacy Policy</a>.</p>
+                <p className="text-sm text-muted">By signing up you agree to Directory's <a href="/">Terms and Conditions</a> and <a href="/">Privacy Policy</a>.</p>
               </form><a className="close-absolute me-md-5 me-xl-6 pt-5" href="/"> 
                 <CloseIcon className="w-2rem h-2rem" xlinkHref="#close-1" />
                 {/* <svg className="svg-icon w-3rem h-3rem">

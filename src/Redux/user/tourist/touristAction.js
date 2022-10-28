@@ -7,6 +7,9 @@ import {
   LOGIN_TOURIST_FAILURE,
 } from "./touristTypes";
 import axios from "axios";
+import { ReactSession }  from 'react-client-session';
+
+
 
 export const registerTouristRequest = () => {
   return {
@@ -83,8 +86,6 @@ export const loginTourist = (postData) => {
     params.append("username", postData.username);
     params.append("password", postData.password);
 
-    console.log(postData);
-
     axios
       .post("http://localhost:4000/login/tourist", params)
       .then((response) => {
@@ -92,9 +93,16 @@ export const loginTourist = (postData) => {
 
         dispatch(loginTouristSuccess(tourist));
         const status = response.status;
+        console.log(tourist);
 
         if (status === 200) {
-          window.location = "/";
+          if(tourist){
+            if (tourist.msg === 'success'){
+              ReactSession.set("username", tourist.username);
+              // window.location = "/";
+            }
+          }
+        
         }
       })
       .catch((error) => {

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux"
+import { useDispatch } from "react-redux";
 import CloseIcon from '@mui/icons-material/Close';
 import { registerTourist } from "../../../Redux/user/tourist/touristAction";
 

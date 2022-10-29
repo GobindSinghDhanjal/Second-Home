@@ -1,7 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import Header from "../components/Header";
 
 function Security() {
+
+  const [currentPass, setCurrentPass] = useState('');
+  const [newPass, setNewPass] = useState('');
+  const [confirmPass, setConfirmPass] = useState('');
+
+  const dispatch = useDispatch();
+
+  function onUpdatePass(e) {
+    const postData = {
+      currentPass,
+      newPass,
+      confirmPass
+    };
+    console.log(postData);
+
+    // e.preventDefault();
+  }
+
+
     return(
         <div>
             <Header />
@@ -34,19 +54,19 @@ function Security() {
               <div className="collapse" id="updatePassword">
                 <div className="row mt-4">
                   <div className="mb-4 col-12">
-                    <label className="form-label" for="password-current">Current Password</label>
-                    <input className="form-control" type="password" name="password-current" id="password-current"/>
+                    <label className="form-label" htmlFor="password-current">Current Password</label>
+                    <input className="form-control" type="password" name="password-current" id="password-current" value={currentPass} onChange={(e)=>setCurrentPass(e.target.value)} />
                   </div>
                   <div className="mb-4 col-md-6">
-                    <label className="form-label" for="password-new">New Password</label>
-                    <input className="form-control" type="password" name="password-new" id="password-new"/>
+                    <label className="form-label" htmlFor="password-new">New Password</label>
+                    <input className="form-control" type="password" name="password-new" id="password-new" value={newPass} onChange={(e)=>setNewPass(e.target.value)}/>
                   </div>
                   <div className="mb-4 col-md-6">
-                    <label className="form-label" for="password-confirm">Confirm Password</label>
-                    <input className="form-control" type="password" name="password-confirm" id="password-confirm"/>
+                    <label className="form-label" htmlFor="password-confirm">Confirm Password</label>
+                    <input className="form-control" type="password" name="password-confirm" id="password-confirm" value={confirmPass} onChange={(e)=>setConfirmPass(e.target.value)}/>
                   </div>
                 </div>
-                <button className="btn btn-outline-primary">Update Password</button>
+                <button className="btn btn-outline-primary" onClick={onUpdatePass}>Update Password</button>
               </div>
             </div>
             <div className="text-block"> 

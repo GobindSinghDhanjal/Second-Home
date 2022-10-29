@@ -19,6 +19,7 @@ import UserAdd4 from "./AddListing/UserAdd4";
 import UserAdd3 from "./AddListing/UserAdd3";
 import UserAdd5 from "./AddListing/UserAdd5";
 import Category from "./Category/Category";
+import Detail from "./Detail/Detail";
 import { Provider } from "react-redux";
 import store from '../Redux/store';
 import Auth0ProviderWithHistory from "../auth0Provider";
@@ -62,6 +63,10 @@ function App() {
 
          {/***************** CATEGORY *****************/}
          <Route path="/category" element={<Category />} />
+
+         
+         {/***************** DETAIL *****************/}
+         <Route path="/detail" element={<Detail />} />
 
          {/*************    REAL ESTATE    *************/}
          <Route path="/realEstate" element={<RealEstate />} />

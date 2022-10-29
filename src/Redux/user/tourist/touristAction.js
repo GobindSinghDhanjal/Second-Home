@@ -68,6 +68,7 @@ export const registerTourist = (postData) => {
         const status = response.status;
 
         if (status === 200) {
+          ReactSession.set("username", tourist.username);
           window.location = "/";
         }
       })
@@ -99,7 +100,7 @@ export const loginTourist = (postData) => {
           if(tourist){
             if (tourist.msg === 'success'){
               ReactSession.set("username", tourist.username);
-              // window.location = "/";
+              window.location = "/";
             }
           }
         

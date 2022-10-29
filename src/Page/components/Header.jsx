@@ -31,7 +31,7 @@ function Header() {
               id="search"
             >
               <div className="input-label-absolute input-label-absolute-left input-expand ms-lg-2 ms-xl-3">
-                <label className="label-absolute" for="search_search">
+                <label className="label-absolute" htmlFor="search_search">
                   <i className="fa fa-search"></i>
                   <span className="sr-only">What are you looking for?</span>
                 </label>
@@ -64,7 +64,7 @@ function Header() {
               id="searchcollapsed"
             >
               <div className="input-label-absolute input-label-absolute-left w-100">
-                <label className="label-absolute" for="searchcollapsed_search">
+                <label className="label-absolute" htmlFor="searchcollapsed_search">
                   <i className="fa fa-search"></i>
                   <span className="sr-only">What are you looking for?</span>
                 </label>

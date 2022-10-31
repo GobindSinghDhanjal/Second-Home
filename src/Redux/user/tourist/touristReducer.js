@@ -9,7 +9,7 @@ import {
 
 const initialState = {
   loading: false,
-  tourists: [],
+  tourist: [],
   error: "",
 };
 
@@ -24,14 +24,14 @@ const touristReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        tourists: action.payload,
+        tourist: action.payload,
         error: "",
       };
     case REGISTER_TOURIST_FAILURE:
       return {
         ...state,
         loading: false,
-        tourists: [],
+        tourist: [],
         error: action.payload,
       };
       case LOGIN_TOURIST_REQUEST:
@@ -43,14 +43,14 @@ const touristReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        tourists: action.payload,
+        tourist: action.payload,
         error: "",
       };
       case LOGIN_TOURIST_FAILURE:
         return {
           ...state,
           loading: false,
-          tourists: [],
+          tourist: [],
           error: action.payload,
         };
 

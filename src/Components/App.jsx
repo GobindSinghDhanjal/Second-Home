@@ -23,13 +23,20 @@ import Blog from "./Blog/Blog";
 import Detail from "./Detail/Detail";
 import { Provider } from "react-redux";
 import store from "../Redux/store";
-import Auth0ProviderWithHistory from "../auth0provider";
+import Auth0ProviderWithHistory from "../auth0Provider";
 import { ReactSession } from "react-client-session";
 import Post from "./Blog/Post";
 import Team from "./Pages/Team";
 import Faq from "./Pages/Faq";
 import ComingSoon from "./Pages/ComingSoon";
 import ErrorPage from "./Pages/ErrorPage";
+import Terms from "./Pages/Terms";
+import UserBooking1 from "./User/BookingProcess/UserBooking1";
+import UserBooking2 from "./User/BookingProcess/UserBooking2";
+import UserBooking3 from "./User/BookingProcess/UserBooking3";
+import UserBooking4 from "./User/BookingProcess/UserBooking4";
+import Category1 from "./Category/Category1";
+import DetailRoom from "./Detail/DetailRoom";
 ReactSession.setStoreType("localStorage");
 
 function App() {
@@ -58,12 +65,21 @@ function App() {
               {/***************** BLOG *****************/}
               <Route path="/blog" element={<Blog />} />
 
+              {/***************** BOOKING PROCESS *****************/}
+              <Route path="/user-booking-1" element={<UserBooking1 />} />
+              <Route path="/user-booking-2" element={<UserBooking2 />} />
+              <Route path="/user-booking-3" element={<UserBooking3 />} />
+              <Route path="/user-booking-4" element={<UserBooking4 />} />
+
+
 
               {/***************** CATEGORY *****************/}
+              <Route path="/category-1" element={<Category1 />} />
               <Route path="/category" element={<Category />} />
 
               {/***************** DETAIL *****************/}
               <Route path="/detail" element={<Detail />} />
+              <Route path="/detail-room" element={<DetailRoom />} />
 
              
 
@@ -73,6 +89,7 @@ function App() {
                <Route path="/error-page" element={<ErrorPage />} />
                <Route path="/faq" element={<Faq />} />
                <Route path="/team" element={<Team />} />
+               <Route path="/terms" element={<Terms />} />
 
              
 

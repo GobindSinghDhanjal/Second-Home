@@ -10,17 +10,16 @@ import axios from "axios";
 import { ReactSession }  from 'react-client-session';
 
 
-
 export const registerTouristRequest = () => {
   return {
     type: REGISTER_TOURIST_REQUEST,
   };
 };
 
-export const registerTouristSuccess = (tourists) => {
+export const registerTouristSuccess = (tourist) => {
   return {
     type: REGISTER_TOURIST_SUCCESS,
-    payload: tourists,
+    payload: tourist,
   };
 };
 
@@ -37,10 +36,10 @@ export const loginTouristRequest = () => {
   };
 };
 
-export const loginTouristSuccess = (tourists) => {
+export const loginTouristSuccess = (tourist) => {
   return {
     type: LOGIN_TOURIST_SUCCESS,
-    payload: tourists,
+    payload: tourist,
   };
 };
 
@@ -53,17 +52,18 @@ export const loginTouristFailure = (error) => {
 
 export const registerTourist = (postData) => {
   return (dispatch) => {
+
     dispatch(registerTouristRequest);
 
     const params = new URLSearchParams();
     params.append("username", postData.username);
     params.append("email", postData.email);
     params.append("password", postData.password);
+
     axios
       .post("http://localhost:4000/user/tourist", params)
       .then((response) => {
         const tourist = response.data;
-        console.log(tourist);
         dispatch(registerTouristSuccess(tourist));
         const status = response.status;
 

@@ -1,6 +1,6 @@
 import React from "react";
 import Header from "../subComponents/Header";
-import BlogItem from "./components/BlogItem";
+import BlogItem from "../subComponents/BlogItem";
 import {blogs} from "../../shared/data";
 
 function Blog() {

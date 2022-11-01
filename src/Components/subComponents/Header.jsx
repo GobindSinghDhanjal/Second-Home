@@ -159,7 +159,7 @@ function Header() {
                           <h6 class="text-uppercase">Pages</h6>
                           <ul class="megamenu-list list-unstyled">
                             <li class="megamenu-list-item">
-                              <a class="megamenu-list-link" href="team.html">
+                              <a class="megamenu-list-link" href="/team">
                                 Team{" "}
                               </a>
                             </li>

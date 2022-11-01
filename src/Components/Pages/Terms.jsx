@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "../../Components/subComponents/Header";
+import Header from "../subComponents/Header";
 
 function Terms() {
     return(

@@ -47,7 +47,7 @@ function Category1() {
           {/* <!-- venue item--> */}
           <div className="col-sm-6 col-lg-4 mb-5 hover-animate" data-marker-id="59c0c8e33b1527bfe2abaf92">
             <div className="card h-100 border-0 shadow">
-              <div className="card-img-top overflow-hidden dark-overlay bg-cover" style={{ backgroundImage : `url("https://d19m59y37dris4.cloudfront.net/directory/2-0/img/photo/restaurant-1430931071372-38127bd472b8.jpg")`, minHeight: "200px"}}><a className="tile-link" href="detail.html"></a>
+              <div className="card-img-top overflow-hidden dark-overlay bg-cover" style={{ backgroundImage : `url("https://d19m59y37dris4.cloudfront.net/directory/2-0/img/photo/restaurant-1430931071372-38127bd472b8.jpg")`, minHeight: "200px"}}><a className="tile-link" href="/detail"></a>
                 <div className="card-img-overlay-bottom z-index-20">
                   <h4 className="text-white text-shadow">Blue Hill</h4>
                   <p className="mb-2 text-xs"><i className="fa fa-star text-warning"></i><i className="fa fa-star text-warning"></i><i className="fa fa-star text-warning"></i><i className="fa fa-star text-warning"></i><i className="fa fa-star text-gray-300">                    </i>
@@ -71,7 +71,7 @@ function Category1() {
           {/* <!-- venue item--> */}
           <div className="col-sm-6 col-lg-4 mb-5 hover-animate" data-marker-id="59c0c8e322f3375db4d89128">
             <div className="card h-100 border-0 shadow">
-              <div className="card-img-top overflow-hidden dark-overlay bg-cover" style={{backgroundImage: `url("https://d19m59y37dris4.cloudfront.net/directory/2-0/img/photo/restaurant-1436018626274-89acd1d6ec9d.jpg")`, minHeight: "200px"}}><a className="tile-link" href="detail.html"></a>
+              <div className="card-img-top overflow-hidden dark-overlay bg-cover" style={{backgroundImage: `url("https://d19m59y37dris4.cloudfront.net/directory/2-0/img/photo/restaurant-1436018626274-89acd1d6ec9d.jpg")`, minHeight: "200px"}}><a className="tile-link" href="/detail"></a>
                 <div className="card-img-overlay-bottom z-index-20">
                   <h4 className="text-white text-shadow">Plutorque</h4>
                   <p className="mb-2 text-xs"><i className="fa fa-star text-warning"></i><i className="fa fa-star text-warning"></i><i className="fa fa-star text-warning"></i><i className="fa fa-star text-warning"></i><i className="fa fa-star text-warning"></i>
@@ -95,7 +95,7 @@ function Category1() {
           {/* <!-- venue item--> */}
           <div className="col-sm-6 col-lg-4 mb-5 hover-animate" data-marker-id="59c0c8e3a31e62979bf147c9">
             <div className="card h-100 border-0 shadow">
-              <div className="card-img-top overflow-hidden dark-overlay bg-cover" style={{backgroundImage: `url("https://d19m59y37dris4.cloudfront.net/directory/2-0/img/photo/restaurant-1466978913421-dad2ebd01d17.jpg")`, minHeight: "200px"}}><a className="tile-link" href="detail.html"></a>
+              <div className="card-img-top overflow-hidden dark-overlay bg-cover" style={{backgroundImage: `url("https://d19m59y37dris4.cloudfront.net/directory/2-0/img/photo/restaurant-1466978913421-dad2ebd01d17.jpg")`, minHeight: "200px"}}><a className="tile-link" href="/detail"></a>
                 <div className="card-img-overlay-bottom z-index-20">
                   <h4 className="text-white text-shadow">Junipoor</h4>
                   <p className="mb-2 text-xs"><i className="fa fa-star text-warning"></i><i className="fa fa-star text-warning"></i><i className="fa fa-star text-warning"></i><i className="fa fa-star text-warning"></i><i className="fa fa-star text-warning"></i>
@@ -119,7 +119,7 @@ function Category1() {
           {/* <!-- venue item--> */}
           <div className="col-sm-6 col-lg-4 mb-5 hover-animate" data-marker-id="59c0c8e3503eb77d487e8082">
             <div className="card h-100 border-0 shadow">
-              <div className="card-img-top overflow-hidden dark-overlay bg-cover" style={{backgroundImage: `url("https://d19m59y37dris4.cloudfront.net/directory/2-0/img/photo/restaurant-1477763858572-cda7deaa9bc5.jpg")`, minHeight: "200px"}}><a className="tile-link" href="detail.html"></a>
+              <div className="card-img-top overflow-hidden dark-overlay bg-cover" style={{backgroundImage: `url("https://d19m59y37dris4.cloudfront.net/directory/2-0/img/photo/restaurant-1477763858572-cda7deaa9bc5.jpg")`, minHeight: "200px"}}><a className="tile-link" href="/detail"></a>
                 <div className="card-img-overlay-bottom z-index-20">
                   <h4 className="text-white text-shadow">Musix</h4>
                   <p className="mb-2 text-xs"><i className="fa fa-star text-warning"></i><i className="fa fa-star text-warning"></i><i className="fa fa-star text-warning"></i><i className="fa fa-star text-gray-300">                    </i><i className="fa fa-star text-gray-300">                    </i>
@@ -143,7 +143,7 @@ function Category1() {
           {/* <!-- venue item--> */}
           <div className="col-sm-6 col-lg-4 mb-5 hover-animate" data-marker-id="59c0c8e39aa2eed0626e485d">
             <div className="card h-100 border-0 shadow">
-              <div className="card-img-top overflow-hidden dark-overlay bg-cover" style={{backgroundImage: `url("https://d19m59y37dris4.cloudfront.net/directory/2-0/img/photo/restaurant-1504087697492-238a6bf49ce8.jpg")`, minHeight: "200px"}}><a className="tile-link" href="detail.html"></a>
+              <div className="card-img-top overflow-hidden dark-overlay bg-cover" style={{backgroundImage: `url("https://d19m59y37dris4.cloudfront.net/directory/2-0/img/photo/restaurant-1504087697492-238a6bf49ce8.jpg")`, minHeight: "200px"}}><a className="tile-link" href="/detail"></a>
                 <div className="card-img-overlay-bottom z-index-20">
                   <h4 className="text-white text-shadow">Prosure</h4>
                   <p className="mb-2 text-xs"><i className="fa fa-star text-warning"></i><i className="fa fa-star text-warning"></i><i className="fa fa-star text-warning"></i><i className="fa fa-star text-warning"></i><i className="fa fa-star text-warning"></i>

@@ -9,7 +9,7 @@ function DividerSection2() {
               <p className="subtitle text-secondary">Who are we?</p>
               <h2 className="mb-md-0">Meet our team</h2>
             </div>
-            <div className="col-md-4 d-md-flex align-items-center justify-content-end"><a className="text-muted text-sm" href="team.html">
+            <div className="col-md-4 d-md-flex align-items-center justify-content-end"><a className="text-muted text-sm" href="/team">
                  Meet us all<i className="fas fa-angle-double-right ms-2"></i></a></div>
           </div>
           <div className="row">

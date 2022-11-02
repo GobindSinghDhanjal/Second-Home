@@ -118,7 +118,8 @@ const reviews = [
     name: "Padmé Amidala",
     date: "Dec 2018",
     rating: 5,
-    profileImg:"https://d19m59y37dris4.cloudfront.net/directory/2-0/img/avatar/avatar-8.jpg",
+    profileImg:
+      "https://d19m59y37dris4.cloudfront.net/directory/2-0/img/avatar/avatar-8.jpg",
     comment:
       "  One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. He lay on his armour-like back, and if he lifted his head a little he could see his brown belly, slightly domed and divided by arches into stiff sections",
   },
@@ -126,33 +127,117 @@ const reviews = [
     name: "Princess Leia",
     date: "Jun 2018",
     rating: 3.3,
-    profileImg:"https://d19m59y37dris4.cloudfront.net/directory/2-0/img/avatar/avatar-3.jpg",
+    profileImg:
+      "https://d19m59y37dris4.cloudfront.net/directory/2-0/img/avatar/avatar-3.jpg",
     comment:
       "    His room, a proper human room although a little too small, lay peacefully between its four familiar walls. Acollection of textile samples lay spread out on the table.",
+  },
+];
+
+const listings = [
+  {
+    title: "Modern, Well-Appointed Room",
+    type: "House",
+    bed: 3,
+    area: "350 m",
+    location: "San Francisco",
+    washrooms: 2,
+    price: "150k",
+    placeImg:
+      "https://d19m59y37dris4.cloudfront.net/directory/2-0/img/photo/photo-1484154218962-a197022b5858.jpg",
+  },
+  {
+    title: "Cute Quirky Garden apt, NYC adjacent",
+    type: "Apartment",
+    bed: 2,
+    area: "85 m",
+    location: "San Francisco",
+    washrooms: 1,
+    price: "65k",
+    placeImg:
+      "https://d19m59y37dris4.cloudfront.net/directory/2-0/img/photo/photo-1426122402199-be02db90eb90.jpg",
+  },
+  {
+    title: "Brooklyn Life, Easy to Manhattan",
+    type: "Apartment",
+    bed: 2,
+    area: "85 m",
+    location: "San Francisco",
+    washrooms: 1,
+    price: "65k",
+    placeImg:
+      "https://d19m59y37dris4.cloudfront.net/directory/2-0/img/photo/photo-1488805990569-3c9e1d76d51c.jpg",
+  },
+];
+
+const venues = [
+  {
+    name: "Matt Damon",
+    title: "Plutorque",
+    rating: 5,
+    type: "Restaurant",
+    moreTypes: ["Restaurant", "Fusion"],
+    description:
+      " Proident irure eiusmod velit veniam consectetur id minim irure etnostrud mollit magna velit. Commodo amet proident aliq...",
+    imgUrl:
+      "https://d19m59y37dris4.cloudfront.net/directory/2-0/img/photo/restaurant-1436018626274-89acd1d6ec9d.jpg",
+  },
+  {
+    name: "Matt Damon",
+    title: "Junipoor",
+    rating: 4,
+    type: "Restaurant",
+    moreTypes: ["Music", "Techno", "House"],
+    description:
+      "Lorem amet ex duis in et fugiat consectetur laborum eiusmodlabore. Quis cupidatat et do dolor in in magna. Eu sit quis...",
+    imgUrl:
+      "https://d19m59y37dris4.cloudfront.net/directory/2-0/img/photo/restaurant-1466978913421-dad2ebd01d17.jpg",
+  },
+  {
+    name: "Not Matt Damon",
+    title: "Not Junipoor",
+    rating: 2,
+    type: "Restaurant",
+    moreTypes: ["Music", "Techno"],
+    description:
+      "Lorem amet ex duis in et fugiat consectetur laborum eiusmodlabore. Quis cupidatat et do dolor in in magna. Eu sit quis...",
+    imgUrl:
+      "https://d19m59y37dris4.cloudfront.net/directory/2-0/img/photo/restaurant-1466978913421-dad2ebd01d17.jpg",
+  },
+];
+
+const messages = [
+  {
+    id:"select_message_0",
+    name: "Meredith Goodwin",
+    profileImg:
+      "https://d19m59y37dris4.cloudfront.net/directory/2-0/img/avatar/avatar-0.jpg",
+    type: "Double Room",
+    date: "February 16, 2019",
+    favourite: true,
+    message:
+      " One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. He lay on his armour-like back, and if he lifted his head a little he could see his brown belly, slightly domed and divided by arches into stiff sections",
+  },{
+    id:"select_message_1",
+    name: "Fisher Bauer",
+    profileImg:
+      "https://d19m59y37dris4.cloudfront.net/directory/2-0/img/avatar/avatar-2.jpg",
+    type: "Double Room",
+    date: " March 10, 2019",
+    favourite: false,
+    message:
+      " One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. He lay on his armour-like back, and if he lifted his head a little he could see his brown belly, slightly domed and divided by arches into stiff sections",
   }
 ];
 
-const listings=[
-    {
-        title:"Modern, Well-Appointed Room",
-        type:"House",
-        bed:3,
-        area:"350 m",
-        location:"San Francisco",
-        washrooms:2,
-        price: "150k",
-        placeImg:"https://d19m59y37dris4.cloudfront.net/directory/2-0/img/photo/photo-1484154218962-a197022b5858.jpg"
-    },
-    {
-        title:"Cute Quirky Garden apt, NYC adjacent",
-        type:"Apartment",
-        bed:2,
-        area:"85 m",
-        location:"San Francisco",
-        washrooms:1,
-        price: "65k",
-        placeImg:"https://d19m59y37dris4.cloudfront.net/directory/2-0/img/photo/photo-1426122402199-be02db90eb90.jpg"
-    },
-]
-
-export { tourist, blogs, comments, places, testimonials, reviews, listings };
+export {
+  tourist,
+  blogs,
+  comments,
+  places,
+  testimonials,
+  reviews,
+  listings,
+  venues,
+  messages
+};

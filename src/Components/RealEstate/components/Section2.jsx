@@ -1,5 +1,4 @@
 import React from "react";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import Card2 from "../../subComponents/Card2";
 import { listings } from "../../../shared/data";
 
@@ -13,7 +12,7 @@ function Section2() {
             <h2 className="mb-md-0">Featured listings around you</h2>
           </div>
           <div className="col-md-4 d-md-flex align-items-center justify-content-end">
-            <a className="text-muted text-sm" href="/category-rooms">
+            <a className="text-muted text-sm" href="/category-1">
               See all featured listings
               <i className="fas fa-angle-double-right ms-2"></i>
             </a>

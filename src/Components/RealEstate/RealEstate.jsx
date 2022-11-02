@@ -1,12 +1,6 @@
 import React from "react";
 import Header from "../subComponents/Header";
-import Box from '@mui/material/Box';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
 import Section1 from "./components/Section1";
-import { Container } from "@mui/system";
 import Container1 from "./components/Container1";
 import Section2 from "./components/Section2";
 import Section3 from "./components/Section3";

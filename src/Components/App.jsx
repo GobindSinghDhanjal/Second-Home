@@ -37,6 +37,8 @@ import UserBooking3 from "./User/BookingProcess/UserBooking3";
 import UserBooking4 from "./User/BookingProcess/UserBooking4";
 import Category1 from "./Category/Category1";
 import DetailRoom from "./Detail/DetailRoom";
+import Messages from "./User/Messages";
+import MessageDetail from "./User/MessageDetail";
 ReactSession.setStoreType("localStorage");
 
 function App() {
@@ -81,6 +83,10 @@ function App() {
               <Route path="/detail" element={<Detail />} />
               <Route path="/detail-room" element={<DetailRoom />} />
 
+                 {/***************** MESSGAES *****************/}
+                 <Route path="/messages" element={<Messages />} />
+                 <Route path="/messages-detail" element={<MessageDetail />} />
+
              
 
                {/***************** PAGES *****************/}
@@ -97,7 +103,7 @@ function App() {
               <Route path="/post" element={<Post />} />
 
               {/*************    REAL ESTATE    *************/}
-              <Route path="/realEstate" element={<RealEstate />} />
+              <Route path="/real-estate" element={<RealEstate />} />
 
               {/**************** ROOMS ******************/}
               <Route path="/rooms" element={<Rooms />} />

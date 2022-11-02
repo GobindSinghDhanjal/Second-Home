@@ -94,7 +94,7 @@ function Header() {
                   className="dropdown-menu"
                   aria-labelledby="homeDropdownMenuLink"
                 >
-                  <a className="dropdown-item" href="/realEstate">
+                  <a className="dropdown-item" href="/real-estate">
                     Real Estate
                   </a>
                 </div>
@@ -118,7 +118,7 @@ function Header() {
                             <li className="megamenu-list-item">
                               <a
                                 className="megamenu-list-link"
-                                href="/realEstate"
+                                href="/real-estate"
                               >
                                 Real estate{" "}
                                 <span className="badge badge-info-light ms-1">
@@ -201,7 +201,7 @@ function Header() {
                           <ul className="megamenu-list list-unstyled">
                             <li className="megamenu-list-item">
                               <a className="megamenu-list-link" href="/profile">
-                                Profile{" "}
+                                Owner Profile{" "}
                               </a>
                             </li>
                             <li className="megamenu-list-item">
@@ -259,7 +259,7 @@ function Header() {
                             <li class="megamenu-list-item">
                               <a
                                 class="megamenu-list-link"
-                                href="user-messages.html"
+                                href="/messages"
                               >
                                 Messages{" "}
                                 <span class="badge badge-info-light ms-1">

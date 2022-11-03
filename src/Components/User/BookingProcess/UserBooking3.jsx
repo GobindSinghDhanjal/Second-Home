@@ -1,7 +1,39 @@
 import React from "react";
+import { places } from "../../../shared/data";
+import Card4 from "../../subComponents/Card4";
 import Header from "../../subComponents/Header";
 
 function UserBooking3() {
+    //////////////   FINDING GUEST   ////////////////
+    const params = new URLSearchParams(window.location.search);
+    const title = params.get("title");
+  
+    ////////////////////////  GETTING ALL THE PARAMS   //////////////////////////////
+    const checkIn = new Date(params.get("checkIn"));
+    const checkOut = new Date(params.get("checkOut"));
+    const guest = params.get("NumOfGuests");
+  
+    const urlPrev =
+      "/user-booking-2?title=" +
+      title +
+      "&checkIn=" +
+      checkIn +
+      "&checkOut=" +
+      checkOut;
+  
+    const urlNext =
+      "/user-booking-4?title=" +
+      title +
+      "&checkIn=" +
+      checkIn +
+      "&checkOut=" +
+      checkOut;
+
+      function placeBooking() {
+        const a=1;
+      }
+
+
   return (
     <div>
     <Header />
@@ -153,7 +185,7 @@ function UserBooking3() {
                 <div className="col text-center text-sm-start">
                   <a
                     className="btn btn-link text-muted"
-                    href="/user-booking-2"
+                    href={urlPrev}
                   >
                     {" "}
                     <i className="fa-chevron-left fa me-2"></i>Back
@@ -162,7 +194,7 @@ function UserBooking3() {
                 <div className="col text-center text-sm-end">
                   <a
                     className="btn btn-primary px-3"
-                    href="/user-booking-4"
+                    href={urlNext}
                   >
                     {" "}
                     Next step<i className="fa-chevron-right fa ms-2"></i>
@@ -170,91 +202,7 @@ function UserBooking3() {
                 </div>
               </div>
             </div>
-            <div className="col-lg-5 ps-xl-5">
-              <div className="card border-0 shadow">
-                <div className="card-body p-4">
-                  <div className="text-block pb-3">
-                    <div className="d-flex align-items-center">
-                      <div>
-                        <h6>
-                          {" "}
-                          <a className="text-reset" href="/detail-rooms">
-                            Modern Apt - Vibrant Neighborhood
-                          </a>
-                        </h6>
-                        <p className="text-muted text-sm mb-0">
-                          Entire home in New York
-                        </p>
-                        <div className="mt-n1">
-                          <i className="fa fa-xs fa-star text-primary"></i>
-                          <i className="fa fa-xs fa-star text-primary"></i>
-                          <i className="fa fa-xs fa-star text-primary"></i>
-                          <i className="fa fa-xs fa-star text-primary"></i>
-                          <i className="fa fa-xs fa-star text-gray-200"></i>
-                        </div>
-                      </div>
-                      <a className="flex-shrink-0" href="/detail-rooms">
-                        <img
-                          className="ms-3 rounded"
-                          src="https://d19m59y37dris4.cloudfront.net/directory/2-0/img/photo/photo-1512917774080-9991f1c4c750.jpg"
-                          alt=""
-                          width="100"
-                        />
-                      </a>
-                    </div>
-                  </div>
-                  <div className="text-block py-3">
-                    <ul className="list-unstyled mb-0">
-                      <li className="mb-3">
-                        <i className="fas fa-users fa-fw text-muted me-2"></i>3
-                        guests
-                      </li>
-                      <li className="mb-0">
-                        <i className="far fa-calendar fa-fw text-muted me-2"></i>
-                        Apr 17, 2019{" "}
-                        <i className="fas fa-arrow-right fa-fw text-muted mx-3"></i>
-                        Apr 18, 2019
-                      </li>
-                    </ul>
-                  </div>
-                  <div className="text-block pt-3 pb-0">
-                    <table className="w-100">
-                      <tbody>
-                        <tr>
-                          <th className="fw-normal py-2">$432.02 x 1 night</th>
-                          <td className="text-end py-2">$432.02</td>
-                        </tr>
-                        <tr>
-                          <th className="fw-normal pt-2 pb-3">Service fee</th>
-                          <td className="text-end pt-2 pb-3">$67.48</td>
-                        </tr>
-                      </tbody>
-                      <tfoot>
-                        <tr className="border-top">
-                          <th className="pt-3">Total</th>
-                          <td className="fw-bold text-end pt-3">$499.50</td>
-                        </tr>
-                      </tfoot>
-                    </table>
-                  </div>
-                </div>
-                <div className="card-footer bg-primary-light py-4 border-0">
-                  <div className="d-flex align-items-center">
-                    <div>
-                      <h6 className="text-primary">
-                        Flexible – free cancellation
-                      </h6>
-                      <p className="text-sm text-primary opacity-8 mb-0">
-                        Cancel within 48 hours of booking to get a full refund.{" "}
-                        <a href="#" className="text-reset ms-3">
-                          More details
-                        </a>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <Card4 />
           </div>
         </div>
       </section>

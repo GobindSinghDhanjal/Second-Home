@@ -39,6 +39,7 @@ import Category1 from "./Category/Category1";
 import DetailRoom from "./Detail/DetailRoom";
 import Messages from "./User/Messages";
 import MessageDetail from "./User/MessageDetail";
+import AllBookings from "./User/AllBookings";
 ReactSession.setStoreType("localStorage");
 
 function App() {
@@ -64,6 +65,9 @@ function App() {
               <Route path="/user-add-4" element={<UserAdd4 />} />
               <Route path="/user-add-5" element={<UserAdd5 />} />
 
+              {/***************** ALL BOOKINGS *****************/}
+              <Route path="/all-bookings" element={<AllBookings />} />
+
               {/***************** BLOG *****************/}
               <Route path="/blog" element={<Blog />} />
 
@@ -73,8 +77,6 @@ function App() {
               <Route path="/user-booking-3" element={<UserBooking3 />} />
               <Route path="/user-booking-4" element={<UserBooking4 />} />
 
-
-
               {/***************** CATEGORY *****************/}
               <Route path="/category-1" element={<Category1 />} />
               <Route path="/category" element={<Category />} />
@@ -83,21 +85,17 @@ function App() {
               <Route path="/detail" element={<Detail />} />
               <Route path="/detail-room" element={<DetailRoom />} />
 
-                 {/***************** MESSGAES *****************/}
-                 <Route path="/messages" element={<Messages />} />
-                 <Route path="/messages-detail" element={<MessageDetail />} />
+              {/***************** MESSGAES *****************/}
+              <Route path="/messages" element={<Messages />} />
+              <Route path="/messages-detail" element={<MessageDetail />} />
 
-             
-
-               {/***************** PAGES *****************/}
-               <Route path="/contact" element={<Contact />} />
-               <Route path="/coming-soon" element={<ComingSoon />} />
-               <Route path="/error-page" element={<ErrorPage />} />
-               <Route path="/faq" element={<Faq />} />
-               <Route path="/team" element={<Team />} />
-               <Route path="/terms" element={<Terms />} />
-
-             
+              {/***************** PAGES *****************/}
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/coming-soon" element={<ComingSoon />} />
+              <Route path="/error-page" element={<ErrorPage />} />
+              <Route path="/faq" element={<Faq />} />
+              <Route path="/team" element={<Team />} />
+              <Route path="/terms" element={<Terms />} />
 
               {/***************** POST *****************/}
               <Route path="/post" element={<Post />} />

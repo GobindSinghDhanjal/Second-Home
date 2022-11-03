@@ -4,7 +4,17 @@ const tourist = {
   name: "xyz",
   phone: 123123123123,
   email: "pst@gmail.com",
-  active_bookings: [],
+  active_bookings: {
+    username: "Abcd",
+    title: "Modern Apt - Vibrant Neighborhood",
+    numOfNights: 3,
+    checkIn: "Apr 17",
+    checkOut: "Apr 18",
+    adress: "Ap #867, 859 Sit Rd., London",
+    phone: "+421 454 897 545",
+    host: "Jack London",
+    price:"500000"
+  },
   prev_bookings: ["xcvxcv"],
   review_id: 1213,
   __v: 0,
@@ -62,37 +72,132 @@ const comments = [
 
 const places = [
   {
+    id: 1,
     name: "Julie",
     title: "Modern Apt - Vibrant Neighborhood!",
+    description:
+      "Our garden basement apartment is fully equipped with everything you need to enjoy your stay. Very comfortable for a couple but plenty of space for a small family. Close to many wonderful Brooklyn attractions and quick trip to Manhattan.",
+    description2:
+      "Welcome to Brooklyn! We are excited to share our wonderful neighborhood with you. Our modern apartment has a private entrance, fully equipped kitchen, and a very comfortable queen size bed. We are happy to accommodate additional guests with a single bed in the living room, another comfy mattress on the floor and can make arrangements for small children with a portable crib and highchair if requested.",
     placeImg:
       "https://d19m59y37dris4.cloudfront.net/directory/2-0/img/photo/photo-1512917774080-9991f1c4c750.jpg",
     profileImg:
       "https://d19m59y37dris4.cloudfront.net/directory/2-0/img/avatar/avatar-8.jpg",
     type: "Entire apartment",
-    price: "$75",
+    price: "5000",
     rating: 4,
+    location: "Mumbai",
+    bed: 3,
+    area: "350 m",
+    washrooms: 2,
+    guests: 4,
+    bedroom: 1,
+    amenities: [
+      "wifi",
+      "cable",
+      "ac",
+      "heater",
+      "toiletteries",
+      "kitchen",
+      "desk",
+      "washing",
+    ],
   },
   {
+    id: 2,
     name: "Pamela",
+    description:
+      "Our garden basement apartment is fully equipped with everything you need to enjoy your stay. Very comfortable for a couple but plenty of space for a small family. Close to many wonderful Brooklyn attractions and quick trip to Manhattan.",
+    description2:
+      "Welcome to Brooklyn! We are excited to share our wonderful neighborhood with you. Our modern apartment has a private entrance, fully equipped kitchen, and a very comfortable queen size bed. We are happy to accommodate additional guests with a single bed in the living room, another comfy mattress on the floor and can make arrangements for small children with a portable crib and highchair if requested.",
     title: "Modern, Well-Appointed Room",
     placeImg:
       "https://d19m59y37dris4.cloudfront.net/directory/2-0/img/photo/photo-1484154218962-a197022b5858.jpg",
     profileImg:
       "https://d19m59y37dris4.cloudfront.net/directory/2-0/img/avatar/avatar-0.jpg",
     type: "Private room",
-    price: "$80",
+    price: "35000",
     rating: 5,
+    location: "Delhi",
+    bed: 3,
+    area: "350 m",
+    washrooms: 2,
+    guests: 4,
+    bedroom: 1,
+    amenities: [
+      "wifi",
+      "cable",
+      "ac",
+      "heater",
+      "toiletteries",
+      "kitchen",
+      "desk",
+      "washing",
+    ],
   },
   {
-    name: "Pamela",
-    title: "Modern, Well-Appointed Room",
+    id: 3,
+    name: "Not Pamela",
+    description:
+      "Our garden basement apartment is fully equipped with everything you need to enjoy your stay. Very comfortable for a couple but plenty of space for a small family. Close to many wonderful Brooklyn attractions and quick trip to Manhattan.",
+    description2:
+      "Welcome to Brooklyn! We are excited to share our wonderful neighborhood with you. Our modern apartment has a private entrance, fully equipped kitchen, and a very comfortable queen size bed. We are happy to accommodate additional guests with a single bed in the living room, another comfy mattress on the floor and can make arrangements for small children with a portable crib and highchair if requested.",
+    title: "Not Modern, Well-Appointed Room",
     placeImg:
       "https://d19m59y37dris4.cloudfront.net/directory/2-0/img/photo/photo-1484154218962-a197022b5858.jpg",
     profileImg:
       "https://d19m59y37dris4.cloudfront.net/directory/2-0/img/avatar/avatar-0.jpg",
     type: "Private room",
-    price: "$80",
+    price: "60000",
     rating: 3.2,
+    location: "Kerala",
+    bed: 1,
+    area: "350 m",
+    washrooms: 1,
+    guests: 1,
+    bedroom: 1,
+    amenities: [
+      "wifi",
+      "cable",
+      "ac",
+      "heater",
+      "toiletteries",
+      "kitchen",
+      "desk",
+      "washing",
+    ],
+  },
+  {
+    id: 3,
+    name: "Not Pamela",
+    description:
+      "Our garden basement apartment is fully equipped with everything you need to enjoy your stay. Very comfortable for a couple but plenty of space for a small family. Close to many wonderful Brooklyn attractions and quick trip to Manhattan.",
+    description2:
+      "Welcome to Brooklyn! We are excited to share our wonderful neighborhood with you. Our modern apartment has a private entrance, fully equipped kitchen, and a very comfortable queen size bed. We are happy to accommodate additional guests with a single bed in the living room, another comfy mattress on the floor and can make arrangements for small children with a portable crib and highchair if requested.",
+    title: "Well-Appointed Room",
+    placeImg:
+      "https://d19m59y37dris4.cloudfront.net/directory/2-0/img/photo/photo-1484154218962-a197022b5858.jpg",
+    profileImg:
+      "https://d19m59y37dris4.cloudfront.net/directory/2-0/img/avatar/avatar-0.jpg",
+    type: "Private room",
+    price: "10000000",
+    rating: 3.2,
+    location: "Kerala",
+    bed: 1,
+    area: "350 m",
+    washrooms: 1,
+    guests: 1,
+    bedroom: 1,
+    amenities: [
+      "wifi",
+      "cable",
+      "ac",
+      "heater",
+      "toiletteries",
+      "kitchen",
+      "desk",
+      "washing",
+    ],
   },
 ];
 
@@ -208,7 +313,7 @@ const venues = [
 
 const messages = [
   {
-    id:"select_message_0",
+    id: "select_message_0",
     name: "Meredith Goodwin",
     profileImg:
       "https://d19m59y37dris4.cloudfront.net/directory/2-0/img/avatar/avatar-0.jpg",
@@ -217,8 +322,9 @@ const messages = [
     favourite: true,
     message:
       " One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. He lay on his armour-like back, and if he lifted his head a little he could see his brown belly, slightly domed and divided by arches into stiff sections",
-  },{
-    id:"select_message_1",
+  },
+  {
+    id: "select_message_1",
     name: "Fisher Bauer",
     profileImg:
       "https://d19m59y37dris4.cloudfront.net/directory/2-0/img/avatar/avatar-2.jpg",
@@ -227,8 +333,39 @@ const messages = [
     favourite: false,
     message:
       " One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. He lay on his armour-like back, and if he lifted his head a little he could see his brown belly, slightly domed and divided by arches into stiff sections",
-  }
+  },
+  {
+    id: "select_message_2",
+    name: "Meredith Goodwin",
+    profileImg:
+      "https://d19m59y37dris4.cloudfront.net/directory/2-0/img/avatar/avatar-0.jpg",
+    type: "Double Room",
+    date: "February 16, 2019",
+    favourite: true,
+    message:
+      " One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. He lay on his armour-like back, and if he lifted his head a little he could see his brown belly, slightly domed and divided by arches into stiff sections",
+  },
 ];
+
+const allBookings = [
+  {
+    title: "Modern, Well-Appointed Room",
+    imageUrl:
+      "https://d19m59y37dris4.cloudfront.net/directory/2-0/img/photo/photo-1484154218962-a197022b5858.jpg",
+    rating: 3.2,
+    date: "March 2019",
+    type: "Private room",
+  },
+  {
+    title: "Cute Quirky Garden apt, NYC adjacent",
+    imageUrl:
+      "https://d19m59y37dris4.cloudfront.net/directory/2-0/img/photo/photo-1426122402199-be02db90eb90.jpg",
+    rating: 4.5,
+    date: "March 2019",
+    type: "Entire apartment",
+  },
+];
+
 
 export {
   tourist,
@@ -239,5 +376,6 @@ export {
   reviews,
   listings,
   venues,
-  messages
+  messages,
+  allBookings
 };

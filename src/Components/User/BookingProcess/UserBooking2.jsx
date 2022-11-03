@@ -1,7 +1,34 @@
 import React from "react";
+import { places } from "../../../shared/data";
+import Card4 from "../../subComponents/Card4";
 import Header from "../../subComponents/Header";
 
 function UserBooking2() {
+  //////////////   FINDING GUEST   ////////////////
+  const params = new URLSearchParams(window.location.search);
+  const title = params.get("title");
+
+  ////////////////////////  GETTING ALL THE PARAMS   //////////////////////////////
+  const checkIn = new Date(params.get("checkIn"));
+  const checkOut = new Date(params.get("checkOut"));
+  const guest = params.get("NumOfGuests");
+
+  const urlPrev =
+    "/user-booking-1?title=" +
+    title +
+    "&checkIn=" +
+    checkIn +
+    "&checkOut=" +
+    checkOut;
+
+  const urlNext =
+    "/user-booking-3?title=" +
+    title +
+    "&checkIn=" +
+    checkIn +
+    "&checkOut=" +
+    checkOut;
+
   return (
     <div>
       <Header />
@@ -72,156 +99,22 @@ function UserBooking2() {
                   </div>
                 </div>
               </div>
-              <div class="text-block">
-                <h5>What's the main purpose of this trip?</h5>
-                <p class="text-sm text-muted">
-                  The bedding was hardly able to cover it and seemed ready to
-                  slide off any moment. His many legs, pit.
-                </p>
-                <ul class="list-unstyled">
-                  <li>
-                    <div class="form-check">
-                      <input
-                        class="form-check-input"
-                        type="radio"
-                        id="purpose_0"
-                        name="purpose"
-                      />
-                      <label class="form-check-label" for="purpose_0">
-                        Personal travel{" "}
-                      </label>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="form-check">
-                      <input
-                        class="form-check-input"
-                        type="radio"
-                        id="purpose_1"
-                        name="purpose"
-                      />
-                      <label class="form-check-label" for="purpose_1">
-                        Business travel{" "}
-                      </label>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-              <div class="text-block">
-                <div class="d-flex">
-                  <div>
-                    <h5>Say hello to your host</h5>
-                    <p class="text-sm text-muted">
-                      His room, a proper human room although a little too small,
-                      lay peacefully between its four familiar .
-                    </p>
-                  </div>
-                  <img
-                    class="avatar avatar-md p-1 flex-shrink-0 ms-4"
-                    src="https://d19m59y37dris4.cloudfront.net/directory/2-0/img/avatar/avatar-10.jpg"
-                    alt="Jack London"
-                  />
-                </div>
-                <textarea class="form-control" name="hello" rows="4"></textarea>
-              </div>
               <div class="row form-block flex-column flex-sm-row">
                 <div class="col text-center text-sm-start">
-                  <a class="btn btn-link text-muted" href="/user-booking-1">
+                  <a class="btn btn-link text-muted" href={urlPrev}>
                     {" "}
                     <i class="fa-chevron-left fa me-2"></i>Back
                   </a>
                 </div>
                 <div class="col text-center text-sm-end">
-                  <a class="btn btn-primary px-3" href="/user-booking-3">
+                  <a class="btn btn-primary px-3" href={urlNext}>
                     {" "}
                     Next step<i class="fa-chevron-right fa ms-2"></i>
                   </a>
                 </div>
               </div>
             </div>
-            <div class="col-lg-5 ps-xl-5">
-              <div class="card border-0 shadow">
-                <div class="card-body p-4">
-                  <div class="text-block pb-3">
-                    <div class="d-flex align-items-center">
-                      <div>
-                        <h6>
-                          {" "}
-                          <a class="text-reset" href="/detail-rooms">
-                            Modern Apt - Vibrant Neighborhood
-                          </a>
-                        </h6>
-                        <p class="text-muted text-sm mb-0">
-                          Entire home in New York
-                        </p>
-                        <div class="mt-n1">
-                          <i class="fa fa-xs fa-star text-primary"></i>
-                          <i class="fa fa-xs fa-star text-primary"></i>
-                          <i class="fa fa-xs fa-star text-primary"></i>
-                          <i class="fa fa-xs fa-star text-primary"></i>
-                          <i class="fa fa-xs fa-star text-gray-200"></i>
-                        </div>
-                      </div>
-                      <a class="flex-shrink-0" href="/detail-rooms">
-                        <img
-                          class="ms-3 rounded"
-                          src="https://d19m59y37dris4.cloudfront.net/directory/2-0/img/photo/photo-1512917774080-9991f1c4c750.jpg"
-                          alt=""
-                          width="100"
-                        />
-                      </a>
-                    </div>
-                  </div>
-                  <div class="text-block py-3">
-                    <ul class="list-unstyled mb-0">
-                      <li class="mb-3">
-                        <i class="fas fa-users fa-fw text-muted me-2"></i>3
-                        guests
-                      </li>
-                      <li class="mb-0">
-                        <i class="far fa-calendar fa-fw text-muted me-2"></i>Apr
-                        17, 2019{" "}
-                        <i class="fas fa-arrow-right fa-fw text-muted mx-3"></i>
-                        Apr 18, 2019
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="text-block pt-3 pb-0">
-                    <table class="w-100">
-                      <tbody>
-                        <tr>
-                          <th class="fw-normal py-2">$432.02 x 1 night</th>
-                          <td class="text-end py-2">$432.02</td>
-                        </tr>
-                        <tr>
-                          <th class="fw-normal pt-2 pb-3">Service fee</th>
-                          <td class="text-end pt-2 pb-3">$67.48</td>
-                        </tr>
-                      </tbody>
-                      <tfoot>
-                        <tr class="border-top">
-                          <th class="pt-3">Total</th>
-                          <td class="fw-bold text-end pt-3">$499.50</td>
-                        </tr>
-                      </tfoot>
-                    </table>
-                  </div>
-                </div>
-                <div class="card-footer bg-primary-light py-4 border-0">
-                  <div class="d-flex align-items-center">
-                    <div>
-                      <h6 class="text-primary">Flexible – free cancellation</h6>
-                      <p class="text-sm text-primary opacity-8 mb-0">
-                        Cancel within 48 hours of booking to get a full refund.{" "}
-                        <a href="#" class="text-reset ms-3">
-                          More details
-                        </a>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <Card4 />
           </div>
         </div>
       </section>

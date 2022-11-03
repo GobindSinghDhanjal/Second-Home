@@ -3,6 +3,16 @@ import Rating from "./Rating";
 
 function Card1(props) {
 
+  const numberFormat = (value) =>
+  new Intl.NumberFormat("en-IN", {
+    style: "currency",
+    currency: "INR",
+    minimumFractionDigits:0,
+    maximumFractionDigits: 0,
+  }).format(value);
+
+  const url=`detail-room?title=${props.title}`;
+
   return (
 
         <div className="card h-100 border-0 shadow">
@@ -11,9 +21,9 @@ function Card1(props) {
             <img
               className="img-fluid"
               src={props.placeImg}
-              alt="Modern Apt - Vibrant Neighborhood!"
+              alt={props.title}
             />
-            <a className="tile-link" href="/detail-room"></a>
+            <a className="tile-link" href={url}></a>
             <div className="card-img-overlay-bottom z-index-20">
               <div className="d-flex text-white text-sm align-items-center">
                 <img
@@ -38,7 +48,7 @@ function Card1(props) {
               <h6 className="card-title">
                 <a
                   className="text-decoration-none text-dark"
-                  href="/detail-room"
+                  href={url}
                 >
                   {props.title}
                 </a>
@@ -52,7 +62,7 @@ function Card1(props) {
                 </p>
               </div>
               <p className="card-text text-muted">
-                <span className="h4 text-primary">{props.price}</span> per night
+                <span className="h4 text-primary">{numberFormat(props.price)}</span>&nbsp; per night
               </p>
             </div>
           </div>

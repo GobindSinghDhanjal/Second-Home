@@ -598,7 +598,7 @@ function DetailRoom() {
                     <InputLabel id="demo-simple-select-label">
                       Guests
                     </InputLabel>
-                    <Select
+                    <Select required
                       labelId="demo-simple-select-label"
                       id="demo-simple-select"
                       value={NumOfGuests}

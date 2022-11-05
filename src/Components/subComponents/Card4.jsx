@@ -18,7 +18,7 @@ function Card4() {
   ////////////////////////  GETTING ALL THE PARAMS   //////////////////////////////
   const checkIn = new Date(params.get("checkIn"));
   const checkOut = new Date(params.get("checkOut"));
-  const guest = params.get("NumOfGuests");
+  const guest = params.get("guest");
 
   const numOfNights = Math.floor((checkOut - checkIn) / (1000 * 60 * 60 * 24));
 
@@ -63,8 +63,7 @@ function Card4() {
             <ul className="list-unstyled mb-0">
               <li className="mb-3">
                 <i className="fas fa-users fa-fw text-muted me-2"></i>
-                {place.guests}
-                guests
+                {guest} guests
               </li>
               <li className="mb-0">
                 <i className="far fa-calendar fa-fw text-muted me-2"></i>

@@ -1,44 +1,142 @@
 import React from "react";
-import { places } from "../../../shared/data";
 import Card4 from "../../subComponents/Card4";
 import Header from "../../subComponents/Header";
+import axios from "axios";
+import { ReactSession }  from 'react-client-session';
+import { places } from "../../../shared/data";
 
 function UserBooking3() {
-    //////////////   FINDING GUEST   ////////////////
-    const params = new URLSearchParams(window.location.search);
-    const title = params.get("title");
-  
-    ////////////////////////  GETTING ALL THE PARAMS   //////////////////////////////
-    const checkIn = new Date(params.get("checkIn"));
-    const checkOut = new Date(params.get("checkOut"));
-    const guest = params.get("NumOfGuests");
-  
-    const urlPrev =
-      "/user-booking-2?title=" +
-      title +
-      "&checkIn=" +
-      checkIn +
-      "&checkOut=" +
-      checkOut;
-  
-    const urlNext =
-      "/user-booking-4?title=" +
-      title +
-      "&checkIn=" +
-      checkIn +
-      "&checkOut=" +
-      checkOut;
+  //////////////   FINDING GUEST   ////////////////
+  const params = new URLSearchParams(window.location.search);
+  const title = params.get("title");
+  const place = places.find((e) => {
+    return e.title === title;
+  });
 
-      function placeBooking() {
-        const a=1;
-      }
+  ////////////////////////  GETTING ALL THE PARAMS   //////////////////////////////
+  const checkIn = new Date(params.get("checkIn"));
+  const checkOut = new Date(params.get("checkOut"));
+  const guest = params.get("NumOfGuests");
 
+
+
+  const urlPrev =
+    "/user-booking-2?title=" +
+    title +
+    "&checkIn=" +
+    checkIn +
+    "&checkOut=" +
+    checkOut;
+
+  const urlNext =
+    "/user-booking-4?title=" +
+    title +
+    "&checkIn=" +
+    checkIn +
+    "&checkOut=" +
+    checkOut;
+
+  function loadScript(src) {
+    return new Promise((resolve) => {
+      const script = document.createElement("script");
+      script.src = src;
+      script.onload = () => {
+        resolve(true);
+      };
+      script.onerror = () => {
+        resolve(false);
+      };
+      document.body.appendChild(script);
+    });
+  }
+
+  async function displayRazorpay() {
+    const res = await loadScript(
+      "https://checkout.razorpay.com/v1/checkout.js"
+    );
+
+    if (!res) {
+      alert("Razorpay SDK failed to load. Are you online?");
+      return;
+    }
+
+    const params = new URLSearchParams();
+    params.append("username",ReactSession.get("username"));
+    params.append("place_id", place.id);
+    params.append("checkIn",checkIn);
+    params.append("checkOut",checkOut);
+
+
+    // creating a new order
+    const result = await axios
+      .post("http://localhost:4000/payment/orders",params)
+      .catch((err) => {
+        console.log(err);
+      });
+
+    if (!result) {
+      alert("Server error. Are you online?");
+      return;
+    }
+
+    // Getting the order details back
+    const { amount, id: order_id, currency, notes } = result.data;
+
+    const options = {
+      key: process.env.REACT_APP_RAZORPAY_KEY_ID, // Enter the Key ID generated from the Dashboard
+      amount: amount.toString(),
+      currency: currency,
+      name: "Soumya Corp.",
+      description: "Test Transaction",
+      order_id: order_id,
+      handler: async function (response) {
+        const data = {
+          notes: notes,
+          orderCreationId: order_id,
+          razorpayPaymentId: response.razorpay_payment_id,
+          razorpayOrderId: response.razorpay_order_id,
+          razorpaySignature: response.razorpay_signature,
+          amount: (amount/100)
+        };
+
+
+        const result = await axios.post(
+          "http://localhost:4000/payment/success",
+          data
+        );
+
+        if(result.data.msg==="success"){
+          window.location.href=urlNext;
+        }else{
+          alert("Transaction failed , Please Retry");
+        }
+
+
+      },
+      prefill: {
+        name: "Soumya Dey",
+        email: "SoumyaDey@example.com",
+        contact: "9999999999",
+      },
+      notes: {
+        address: "Soumya Dey Corporate Office",
+      },
+      theme: {
+        color: "#61dafb",
+      },
+    };
+
+
+    const paymentObject = new window.Razorpay(options);
+
+    paymentObject.open();
+  }
 
   return (
     <div>
-    <Header />
-    <br />
-    <br />
+      <Header />
+      <br />
+      <br />
       <div
         className="progress rounded-0 sticky-top"
         style={{ height: "8px", top: "72px" }}
@@ -75,7 +173,7 @@ function UserBooking3() {
                   </div>
                 </div>
               </div>
-              <div className="text-block">
+              {/* <div className="text-block">
                 <form action="#">
                   <div className="d-flex justify-content-between align-items-end mb-4">
                     <h5 className="mb-0">Pay with your card</h5>
@@ -169,7 +267,7 @@ function UserBooking3() {
                     </div>
                   </div>
                 </form>
-              </div>
+              </div> */}
               <div className="text-block">
                 <h6>Cancellation policy</h6>
                 <p className="text-sm text-muted">
@@ -183,22 +281,19 @@ function UserBooking3() {
               </div>
               <div className="row form-block flex-column flex-sm-row">
                 <div className="col text-center text-sm-start">
-                  <a
-                    className="btn btn-link text-muted"
-                    href={urlPrev}
-                  >
+                  <a className="btn btn-link text-muted" href={urlPrev}>
                     {" "}
                     <i className="fa-chevron-left fa me-2"></i>Back
                   </a>
                 </div>
                 <div className="col text-center text-sm-end">
-                  <a
+                  <button
                     className="btn btn-primary px-3"
-                    href={urlNext}
+                    onClick={displayRazorpay}
                   >
                     {" "}
-                    Next step<i className="fa-chevron-right fa ms-2"></i>
-                  </a>
+                    Pay Now<i className="fa-chevron-right fa ms-2"></i>
+                  </button>
                 </div>
               </div>
             </div>

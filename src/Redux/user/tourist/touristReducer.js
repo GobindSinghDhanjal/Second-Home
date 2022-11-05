@@ -1,3 +1,4 @@
+import { tourist } from "../../../shared/data";
 import {
   REGISTER_TOURIST_REQUEST,
   REGISTER_TOURIST_SUCCESS,
@@ -9,7 +10,7 @@ import {
 
 const initialState = {
   loading: false,
-  tourist: [],
+  tourist: tourist,
   error: "",
 };
 

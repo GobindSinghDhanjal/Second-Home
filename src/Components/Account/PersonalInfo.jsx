@@ -4,9 +4,7 @@ import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 import { useDispatch, useSelector } from "react-redux";
 
 function PersonalInfo() {
-
-  
-const tourist = useSelector((state) => state.tourists[0]);
+const tourist = useSelector((state) => state.tourist.tourist);
 
   const dispatch = useDispatch();
 
@@ -74,7 +72,7 @@ const tourist = useSelector((state) => state.tourists[0]);
                           type="text"
                           name="name"
                           id="name"
-                          value=""
+                          placeholder="sadasd"
                           onChange={(e) => null}
                         />
                       </div>
@@ -87,8 +85,8 @@ const tourist = useSelector((state) => state.tourists[0]);
                           type="email"
                           name="email"
                           id="email"
-                          value=""
-                          onChange={(e) => null}
+                          disabled
+                          value={tourist.email}
                         />
                       </div>
                       <div className="mb-4 col-md-6">
@@ -100,8 +98,8 @@ const tourist = useSelector((state) => state.tourists[0]);
                           type="text"
                           name="phone"
                           id="phone"
-                          value=""
-                          onChange={(e) => null}
+                          disabled
+                          value={tourist.phone}
                         />
                       </div>
                     </div>

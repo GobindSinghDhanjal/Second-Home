@@ -87,6 +87,7 @@ function Herohome2() {
                       <DatePicker
                         label="Check Out"
                         value={checkOut}
+                        minDate={checkIn}
                         disablePast
                         onChange={(newValue) => {
                           setCheckOut(newValue);

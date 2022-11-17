@@ -1,10 +1,11 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Card2(props) {
   return (
-    <div className="swiper-slide h-auto px-2">
+    
       <div
-        className="w-100 h-100 hover-animate"
+        className="w-100 mb-4 mt-4 h-100 hover-animate"
         data-marker-id="59c0c8e33b1527bfe2abaf92"
       >
         <div className="card h-100 border-0 shadow">
@@ -15,25 +16,26 @@ function Card2(props) {
               src={props.placeImg}
               alt="Modern, Well-Appointed Room"
             />
-            <a className="tile-link" href="/detail-room"></a>
+            <Link className="tile-link" to="/detail-room"></Link>
             <div className="card-img-overlay-top text-end">
-              <a
+              <Link
                 className="card-fav-icon position-relative z-index-40"
-                href="javascript: void();"
+                to="javascript: void();"
               >
                 <i class="fa fa-heart" aria-hidden="true"></i>
-              </a>
+              </Link>
             </div>
           </div>
           <div className="card-body d-flex align-items-center">
             <div className="w-100">
-              <h6 className="card-title">
-                <a
+              <h6 className="card-title"style={{height:"55px"}}>
+                <Link
                   className="text-decoration-none text-dark"
-                  href="/detail-room"
+                  to="/detail-room"
+          
                 >
                   {props.title}
-                </a>
+                </Link>
               </h6>
               <p className="text-sm text-secondary card-subtitle mb-2">
                 <i className="fa fa-map-marker text-secondary opacity-4 me-1"></i>
@@ -63,7 +65,7 @@ function Card2(props) {
           </div>
         </div>
       </div>
-    </div>
+   
   );
 }
 

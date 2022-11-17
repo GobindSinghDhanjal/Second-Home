@@ -7,10 +7,10 @@ function Rating(props) {
   return (
     <div>
       {Array.from(Array(n)).map((e,i) => (
-        <i className={props.class1}></i>
+        <i key={i} className={props.class1}></i>
       ))}
-      {Array.from(Array(p)).map(() => (
-        <i className={props.class2}> </i>
+      {Array.from(Array(p)).map((e,j) => (
+        <i key={j} className={props.class2}> </i>
       ))}
     </div>
   );

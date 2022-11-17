@@ -86,7 +86,7 @@ function UserBooking3() {
       key: process.env.REACT_APP_RAZORPAY_KEY_ID, // Enter the Key ID generated from the Dashboard
       amount: amount.toString(),
       currency: currency,
-      name: "Soumya Corp.",
+      name: "Stay Alohas",
       description: "Test Transaction",
       order_id: order_id,
       handler: async function (response) {

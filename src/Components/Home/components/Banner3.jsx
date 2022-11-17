@@ -1,8 +1,14 @@
-import React from "react";
-import { places } from "../../../shared/data";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Card1 from "../../subComponents/Card1";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import { Link } from "react-router-dom";
 
 function Banner3() {
+  const homeData = useSelector((state) => state.homes);
+  const homes = useSelector((state) => state.homes.homes);
+
   return (
     <section className="py-6 bg-gray-100">
       <div className="container">
@@ -14,31 +20,49 @@ function Banner3() {
             <h2>Last minute deals</h2>
           </div>
           <div className="col-md-4 d-lg-flex align-items-center justify-content-end">
-            <a className="text-muted text-sm" href="/category-1">
+            <Link className="text-muted text-sm" to="/category-1">
               See all deals<i className="fas fa-angle-double-right ms-2"></i>
-            </a>
+            </Link>
           </div>
         </div>
         {/* <!-- Slider main container--> */}
-        <div
-          className="swiper-container swiper-container-mx-negative swiper-init pt-3"
-          data-swiper='{"slidesPerView":4,"spaceBetween":20,"loop":true,"roundLengths":true,"breakpoints":{"1200":{"slidesPerView":3},"991":{"slidesPerView":2},"565":{"slidesPerView":1}},"pagination":{"el":".swiper-pagination","clickable":true,"dynamicBullets":true}}'
-        >
-          {/* <!-- Additional required wrapper--> */}
-          <div className="swiper-wrapper pb-5">
-            {/* <!-- Slides--> */}
+        <Swiper
+         loop={true}
 
-            {places.map((place, i) => {
-              return (
-                <div className="swiper-slide h-auto px-2">
+        className="pb-2"
+         breakpoints={{
+        0: { slidesPerView: 1, spaceBetween: 30},
+        500: { slidesPerView: 1.3, spaceBetween: 30},
+        750: { slidesPerView: 2, spaceBetween: 30},
+        900: {sliderPerView: 3.5, spaceBetween: 30}
+      }}
+      centeredSlides
+      centeredSlidesBounds
+      slidesPerView={3.5}
+
+        >
+          {homes.map((place, i) => {
+            return (
+              <SwiperSlide key={i}>
+                <div
+                  key={i}
+                  className="swiper-slide h-auto px-2"
+                  style={{
+                    width: "344px",
+                    marginRight: "20px",
+                  }}
+                >
                   {/* <!-- place item--> */}
                   <div
+                    key={i}
                     className="w-100 h-100 hover-animate"
                     data-marker-id="59c0c8e3a31e62979bf147c9"
                   >
                     <Card1
                       key={i}
+                      id={place._id}
                       name={place.name}
+                      nextUrl="detail-room"
                       title={place.title}
                       placeImg={place.placeImg}
                       profileImg={place.profileImg}
@@ -48,13 +72,10 @@ function Banner3() {
                     />
                   </div>
                 </div>
-              );
-            })}
-            
-          </div>
-          {/* <!-- If we need pagination--> */}
-          <div className="swiper-pagination"></div>
-        </div>
+              </SwiperSlide>
+            );
+          })}
+        </Swiper>
       </div>
     </section>
   );

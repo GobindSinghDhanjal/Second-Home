@@ -1,5 +1,6 @@
 import React from "react";
 import Rating from "./Rating";
+import {Link} from "react-router-dom";
 
 function Card1(props) {
 
@@ -11,11 +12,12 @@ function Card1(props) {
     maximumFractionDigits: 0,
   }).format(value);
 
-  const url=`detail-room?title=${props.title}`;
+  const url=`${props.nextUrl}?title=${props.title}`;
+
 
   return (
 
-        <div className="card h-100 border-0 shadow">
+        <div className="card h-100 border-0 shadow" >
           <div className="card-img-top overflow-hidden gradient-overlay">
             {" "}
             <img
@@ -23,7 +25,8 @@ function Card1(props) {
               src={props.placeImg}
               alt={props.title}
             />
-            <a className="tile-link" href={url}></a>
+            {/* <a className="tile-link" href={url}></a> */}
+            <Link to={url}></Link>
             <div className="card-img-overlay-bottom z-index-20">
               <div className="d-flex text-white text-sm align-items-center">
                 <img
@@ -36,30 +39,27 @@ function Card1(props) {
             </div>
             <div className="card-img-overlay-top text-end">
               <a
-                className="card-fav-icon position-relative z-index-40"
-                href="javascript: void();"
+                className="card-fav-icon position-relative z-index-40" href=" "
               >
-                <i class="fa fa-heart" aria-hidden="true"></i>
+                <i className="fa fa-heart" aria-hidden="true"></i>
               </a>
             </div>
           </div>
-          <div className="card-body d-flex align-items-center">
+          <div className="card-body d-flex align-items-center" >
             <div className="w-100">
-              <h6 className="card-title">
-                <a
-                  className="text-decoration-none text-dark"
-                  href={url}
-                >
-                  {props.title}
-                </a>
+              <h6 className="card-title" style={{minHeight: "45px"}}>
+ 
+                <Link className="text-decoration-none text-dark" to={url}> {props.title}</Link>
+ 
               </h6>
               <div className="d-flex card-subtitle mb-3">
                 <p className="flex-grow-1 mb-0 text-muted text-sm">
                   {props.type}
                 </p>
-                <p className="flex-shrink-1 mb-0 card-stars text-xs text-end">
-                <Rating rating={props.rating} class1="fa fa-star text-warning" class2="fa fa-star text-gray-300"/>
-                </p>
+                <div className="flex-shrink-1 mb-0 card-stars text-xs text-end">
+                
+                <Rating key={props.id} rating={props.rating} class1="fa fa-star text-warning" class2="fa fa-star text-gray-300"/>
+                </div>
               </div>
               <p className="card-text text-muted">
                 <span className="h4 text-primary">{numberFormat(props.price)}</span>&nbsp; per night

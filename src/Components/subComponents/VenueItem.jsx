@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Rating from "./Rating";
 
 function VenueItem(props) {
@@ -12,7 +13,7 @@ function VenueItem(props) {
             minHeight: "200px",
           }}
         >
-          <a className="tile-link" href="/detail"></a>
+          <Link className="tile-link" to="/detail"></Link>
           <div className="card-img-overlay-bottom z-index-20">
             <h4 className="text-white text-shadow">{props.title}</h4>
             <p className="mb-2 text-xs">
@@ -27,31 +28,31 @@ function VenueItem(props) {
             <div className="badge badge-transparent badge-pill px-3 py-2">
               {props.type}
             </div>
-            <a
+            <Link
               className="card-fav-icon position-relative z-index-40"
-              href="javascript: void();"
+              to="javascript: void();"
             >
               <svg className="svg-icon text-white">
                 <use xlinkHref="#heart-1"> </use>
               </svg>
-            </a>
+            </Link>
           </div>
         </div>
         <div className="card-body">
           <p className="text-sm text-muted mb-3"> {props.description}</p>
           <p className="text-sm text-muted text-uppercase mb-1">
             By{" "}
-            <a href="#" className="text-dark">
+            <Link to="#" className="text-dark">
               {props.name}
-            </a>
+            </Link>
           </p>
           <p className="text-sm mb-0">
             {props.moreTypes.map((type) => {
               return (
-                <a className="me-1" href="#">
+                <Link className="me-1" to="#">
                   {type}
                   {"  "}
-                </a>
+                </Link>
               );
             })}
           </p>

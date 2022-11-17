@@ -1,27 +1,35 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Header from "../../subComponents/Header";
 import { places } from "../../../shared/data";
 import Rating from "../../subComponents/Rating";
 import Card4 from "../../subComponents/Card4";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchSingleHome } from "../../../Redux";
+import { Link } from "react-router-dom";
 
 function UserBooking1() {
   //////////////   FINDING GUEST   ////////////////
   const params = new URLSearchParams(window.location.search);
   const title = params.get("title");
-  const place = places.find((e) => {
-    return e.title === title;
-  });
+
+  const homeData = useSelector(state=>state.homes)
+  const place = useSelector(state=>state.homes.home)
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchSingleHome(title));
+  }, []);
 
   ////////////////////////  GETTING ALL THE PARAMS   //////////////////////////////
   const checkIn = new Date(params.get("checkIn"));
   const checkOut = new Date(params.get("checkOut"));
-  const guest = params.get("NumOfGuests");
+  const guest = params.get("guest");
 
   const numOfNights = Math.floor((checkOut - checkIn) / (1000 * 60 * 60 * 24));
 
-  const url = "/user-booking-2?title="+title+"&checkIn="+checkIn+"&checkOut="+checkOut;
+  const url = "/user-booking-2?title="+title+"&guest="+guest+"&checkIn="+checkIn+"&checkOut="+checkOut;
 
-  return (
+  return homeData.loading ? ( <h1>Loading</h1> ) : homeData.error ? ( <h1>Error</h1> ) : (
     <div>
       <Header />
       <br />
@@ -33,7 +41,7 @@ function UserBooking1() {
         <div
           className="progress-bar"
           role="progressbar"
-          style={{ width: "25%" }}
+          style={{ width: "33.33%" }}
           aria-valuenow="25"
           aria-valuemin="0"
           aria-valuemax="100"
@@ -164,10 +172,10 @@ function UserBooking1() {
               <div className="row form-block flex-column flex-sm-row">
                 <div className="col text-center text-sm-start"></div>
                 <div className="col text-center text-sm-end">
-                  <a className="btn btn-primary px-3" href={url}>
+                  <Link className="btn btn-primary px-3" to={url}>
                     {" "}
                     Next step<i className="fa-chevron-right fa ms-2"></i>
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>

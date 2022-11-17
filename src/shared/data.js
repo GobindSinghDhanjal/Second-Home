@@ -366,6 +366,40 @@ const allBookings = [
   },
 ];
 
+const guides=[
+  {
+    name:"New York",
+    imgUrl:"https://d19m59y37dris4.cloudfront.net/directory/2-0/img/photo/new-york.jpg",
+    description:"The big apple"
+  },
+  {
+    name:"Paris",
+    imgUrl:"https://d19m59y37dris4.cloudfront.net/directory/2-0/img/photo/paris.jpg",
+    description:"Artist capital of Europe"
+  },
+  {
+    name:"New York",
+    imgUrl:"https://d19m59y37dris4.cloudfront.net/directory/2-0/img/photo/new-york.jpg",
+    description:"The big apple"
+  },
+  {
+    name:"Paris",
+    imgUrl:"https://d19m59y37dris4.cloudfront.net/directory/2-0/img/photo/paris.jpg",
+    description:"Artist capital of Europe"
+  },
+  {
+    name:"New York",
+    imgUrl:"https://d19m59y37dris4.cloudfront.net/directory/2-0/img/photo/new-york.jpg",
+    description:"The big apple"
+  },
+  {
+    name:"Paris",
+    imgUrl:"https://d19m59y37dris4.cloudfront.net/directory/2-0/img/photo/paris.jpg",
+    description:"Artist capital of Europe"
+  }
+
+]
+
 
 export {
   tourist,
@@ -377,5 +411,6 @@ export {
   listings,
   venues,
   messages,
-  allBookings
+  allBookings,
+  guides
 };

@@ -91,16 +91,35 @@ export const loginTourist = (postData) => {
       .post("http://localhost:4000/login/tourist", params)
       .then((response) => {
         const tourist = response.data;
-
-        dispatch(loginTouristSuccess(tourist));
+        const token = response.data.token;
+     
         const status = response.status;
-        console.log(tourist);
+     
 
         if (status === 200) {
           if(tourist){
             if (tourist.msg === 'success'){
-              ReactSession.set("username", tourist.username);
-              window.location = "/";
+
+              localStorage.setItem("token",token);
+              dispatch(loginTouristSuccess(token));
+
+      
+              const title = postData.title;
+              const checkIn = new Date(postData.checkIn);
+              const checkOut = new Date(postData.checkOut);
+              const guest = postData.guest;
+
+              if (title && checkIn && checkOut && guest){
+
+                const url = "/user-booking-2?title="+title+"&guest="+guest+"&checkIn="+checkIn+"&checkOut="+checkOut;
+                window.location.href = url;
+
+              }else{
+                window.location = "/"
+              }
+
+              // ReactSession.set("username", tourist.username);
+
             }
           }
         
@@ -109,6 +128,16 @@ export const loginTourist = (postData) => {
       .catch((error) => {
         const errorMsg = error.message;
         dispatch(loginTouristFailure(errorMsg));
+
+        if(error.response){
+          if(error.response.status===401){
+            alert("Wrong username or password");
+          }
+        }else{
+          alert(error.message);
+        }
+        
+    
       });
   };
 };

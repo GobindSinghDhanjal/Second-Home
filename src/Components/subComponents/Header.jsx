@@ -1,30 +1,38 @@
 import React from "react";
-import { ReactSession } from "react-client-session";
+import { useAuth0 } from "@auth0/auth0-react";
+import LoginButton from "./LoginButton";
+import LogoutButton from "./LogoutButton";
+import { Link } from "react-router-dom";
 
 function Header() {
-  const user = ReactSession.get("username");
+  const { user, isAuthenticated, isLoading } = useAuth0();
 
-  function clearSession() {
-    ReactSession.remove("username");
+  // const token = localStorage.getItem("token");
+
+  // function clearSession() {
+  //   localStorage.clear();   ///////////////   Clearing the jwt token  ///////////////
+  // }
+
+  if (isLoading) {
+    return <div>Loading ...</div>;
   }
 
-  // if (user) {
-  //   console.log(user);
-  // } else {
-  //   console.log("user nhi hai");
-  // }
+  console.log("User : ");
+  console.log(user);
+  console.log("Authenticated : ");
+  console.log(isAuthenticated);
 
   return (
     <header className="header">
       <nav className="navbar navbar-expand-lg fixed-top shadow navbar-light bg-white">
         <div className="container-fluid">
           <div className="d-flex align-items-center">
-            <a className="navbar-brand py-1" href="/">
+            <Link className="navbar-brand py-1" to="/">
               <img
                 src="https://d19m59y37dris4.cloudfront.net/directory/2-0/img/logo.svg"
                 alt="Directory logo"
               />
-            </a>
+            </Link>
             <form
               className="form-inline d-none d-sm-flex"
               action="#"
@@ -82,33 +90,36 @@ function Header() {
             </form>
             <ul className="navbar-nav ms-auto">
               <li className="nav-item dropdown">
-                <a
+                <Link
                   className="nav-link dropdown-toggle active"
                   id="homeDropdownMenuLink"
-                  href="/"
+                  to="/"
                   data-bs-toggle="dropdown"
                 >
                   Home
-                </a>
+                </Link>
                 <div
                   className="dropdown-menu"
                   aria-labelledby="homeDropdownMenuLink"
                 >
-                  <a className="dropdown-item" href="/real-estate">
+                  <Link className="dropdown-item" to="/real-estate">
                     Real Estate
-                  </a>
+                  </Link>
                 </div>
               </li>
 
               <li className="nav-item dropdown position-static">
-                <a
+                <Link
                   className="nav-link dropdown-toggle"
-                  href="/"
+                  to="/"
                   data-bs-toggle="dropdown"
                 >
                   Template
-                </a>
-                <div className="dropdown-menu megamenu py-lg-0">
+                </Link>
+                <div
+                  className="dropdown-menu megamenu py-lg-0"
+                  style={{ marginTop: "-30px" }}
+                >
                   <div className="row">
                     <div className="col-lg-9">
                       <div className="row p-3 pe-lg-0 ps-lg-5 pt-lg-5">
@@ -116,83 +127,89 @@ function Header() {
                           <h6 className="text-uppercase">Homepage</h6>
                           <ul className="megamenu-list list-unstyled">
                             <li className="megamenu-list-item">
-                              <a
+                              <Link
                                 className="megamenu-list-link"
-                                href="/real-estate"
+                                to="/real-estate"
                               >
                                 Real estate{" "}
                                 <span className="badge badge-info-light ms-1">
                                   New
                                 </span>{" "}
-                              </a>
+                              </Link>
                             </li>
                           </ul>
 
                           <h6 className="text-uppercase">Rooms</h6>
                           <ul className="megamenu-list list-unstyled">
                             <li className="megamenu-list-item">
-                              <a
+                              <Link
                                 className="megamenu-list-link"
-                                href="/category"
+                                to="/category"
                               >
                                 Category - Map on the right{" "}
-                              </a>
+                              </Link>
                             </li>
                           </ul>
                           {/* <!-- Megamenu list--> */}
-                          <h6 class="text-uppercase">Blog</h6>
-                          <ul class="megamenu-list list-unstyled">
-                            <li class="megamenu-list-item">
-                              <a class="megamenu-list-link" href="/blog">
+                          <h6 className="text-uppercase">Blog</h6>
+                          <ul className="megamenu-list list-unstyled">
+                            <li className="megamenu-list-item">
+                              <Link className="megamenu-list-link" to="/blog">
                                 Blog{" "}
-                              </a>
+                              </Link>
                             </li>
-                            <li class="megamenu-list-item">
-                              <a class="megamenu-list-link" href="/post">
+                            <li className="megamenu-list-item">
+                              <Link className="megamenu-list-link" to="/post">
                                 Post{" "}
-                              </a>
+                              </Link>
                             </li>
                           </ul>
                         </div>
                         <div className="col-lg-3">
                           {/* <!-- Megamenu list--> */}
-                          <h6 class="text-uppercase">Pages</h6>
-                          <ul class="megamenu-list list-unstyled">
-                            <li class="megamenu-list-item">
-                              <a class="megamenu-list-link" href="/team">
+                          <h6 className="text-uppercase">Pages</h6>
+                          <ul className="megamenu-list list-unstyled">
+                            <li className="megamenu-list-item">
+                              <Link className="megamenu-list-link" to="/team">
                                 Team{" "}
-                              </a>
+                              </Link>
                             </li>
-                            <li class="megamenu-list-item">
-                              <a class="megamenu-list-link" href="/contact">
+                            <li className="megamenu-list-item">
+                              <Link
+                                className="megamenu-list-link"
+                                to="/contact"
+                              >
                                 Contact{" "}
-                              </a>
+                              </Link>
                             </li>
-                            <li class="megamenu-list-item">
-                              <a class="megamenu-list-link" href="/faq">
+                            <li className="megamenu-list-item">
+                              <Link className="megamenu-list-link" to="/faq">
                                 F.A.Q.s{" "}
-                              </a>
+                              </Link>
                             </li>
-                            <li class="megamenu-list-item">
-                              <a
-                                class="megamenu-list-link"
-                                href="/coming-soon"
+                            <li className="megamenu-list-item">
+                              <Link
+                                className="megamenu-list-link"
+                                to="/coming-soon"
                               >
                                 Coming soon{" "}
-                              </a>
+                              </Link>
                             </li>
-                            <li class="megamenu-list-item">
-                              <a class="megamenu-list-link" href="/error-page">
+                            <li className="megamenu-list-item">
+                              <Link
+                                className="megamenu-list-link"
+                                to="/error-page"
+                              >
                                 404 page{" "}
-                              </a>
+                              </Link>
                             </li>
-                            <li class="megamenu-list-item">
-                              <a class="megamenu-list-link" href="/terms">
+                            <li className="megamenu-list-item">
+                              <Link className="megamenu-list-link" to="/terms">
                                 Terms & Conditions{" "}
-                                <span class="badge badge-info-light ms-1">
+                                <span className="badge badge-info-light ms-1">
                                   New
                                 </span>{" "}
-                              </a>
+                              </Link>
                             </li>
                           </ul>
                         </div>
@@ -200,77 +217,70 @@ function Header() {
                           <h6 className="text-uppercase">User</h6>
                           <ul className="megamenu-list list-unstyled">
                             <li className="megamenu-list-item">
-                              <a className="megamenu-list-link" href="/profile">
+                              <Link
+                                className="megamenu-list-link"
+                                to="/profile"
+                              >
                                 Owner Profile{" "}
-                              </a>
+                              </Link>
                             </li>
                             <li className="megamenu-list-item">
-                              <a className="megamenu-list-link" href="/account">
+                              <Link
+                                className="megamenu-list-link"
+                                to="/account"
+                              >
                                 Account{" "}
-                              </a>
+                              </Link>
                             </li>
 
-                            {user ? (
+                            {isAuthenticated ? (
                               <li className="megamenu-list-item">
-                                <a
-                                  className="megamenu-list-link"
-                                  href="/"
-                                  onClick={clearSession}
-                                >
-                                  Sign Out{" "}
-                                </a>
+                                <Link className="megamenu-list-link" to="/">
+                                  <LogoutButton />
+                                </Link>
                               </li>
                             ) : (
                               <li className="megamenu-list-item">
-                                <a
-                                  className="megamenu-list-link"
-                                  href="/signin"
-                                >
-                                  Sign in{" "}
-                                </a>
+                                <Link className="megamenu-list-link">
+                                  <LoginButton />
+                                  {/* Sign in{" "} */}
+                                </Link>
                               </li>
                             )}
-                            {user ? null : (
-                              <li className="megamenu-list-item">
-                                <a
-                                  className="megamenu-list-link"
-                                  href="/signup"
-                                >
-                                  Sign up{" "}
-                                </a>
-                              </li>
-                            )}
-                            <li class="megamenu-list-item">
-                              <a
-                                class="megamenu-list-link"
-                                href="/user-booking-1"
+                            <li className="megamenu-list-item">
+                              <Link
+                                className="megamenu-list-link"
+                                to="/user-booking-1"
                               >
                                 Booking process{" "}
-                              </a>
+                              </Link>
                             </li>
                             <li className="megamenu-list-item">
-                              <a
+                              <Link
                                 className="megamenu-list-link"
-                                href="/booking-details"
+                                to="/booking-details"
                               >
                                 Booking detail{" "}
-                              </a>
-                            </li>
-                            <li class="megamenu-list-item">
-                              <a
-                                class="megamenu-list-link"
-                                href="/messages"
-                              >
-                                Messages{" "}
-                                <span class="badge badge-info-light ms-1">
-                                  New
-                                </span>{" "}
-                              </a>
+                              </Link>
                             </li>
                             <li className="megamenu-list-item">
-                              <a className="megamenu-list-link" href="/invoice">
+                              <Link
+                                className="megamenu-list-link"
+                                to="/messages"
+                              >
+                                Messages{" "}
+                                <span className="badge badge-info-light ms-1">
+                                  New
+                                </span>{" "}
+                              </Link>
+                            </li>
+                            <li className="megamenu-list-item">
+                              <Link
+                                className="megamenu-list-link"
+                                to="/invoice"
+                              >
                                 Invoice{" "}
-                              </a>
+                              </Link>
                             </li>
                           </ul>
                         </div>
@@ -344,37 +354,24 @@ function Header() {
               </li>
 
               <li className="nav-item">
-                <a className="nav-link" href="/contact">
+                <Link className="nav-link" to="/contact">
                   Contact
-                </a>
+                </Link>
               </li>
 
-              {user ? (
+              {isAuthenticated ? (
                 <li className="nav-item">
-                  <a className="nav-link" href="/" onClick={clearSession}>
-                    Sign out
-                  </a>
+                  <Link className="nav-link" to="/">
+                    <LogoutButton />
+                  </Link>
                 </li>
               ) : (
                 <li className="nav-item">
-                  <a className="nav-link" href="/signin">
-                    Sign in
-                  </a>
+                  <Link className="nav-link">
+                    <LoginButton />
+                  </Link>
                 </li>
               )}
-              {user ? null : (
-                <li className="nav-item">
-                  <a className="nav-link" href="/signup">
-                    Sign up
-                  </a>
-                </li>
-              )}
-
-              <li className="nav-item mt-3 mt-lg-0 ms-lg-3 d-lg-none d-xl-inline-block">
-                <a className="btn btn-primary" href="/addListing">
-                  Add a listing
-                </a>
-              </li>
             </ul>
           </div>
         </div>

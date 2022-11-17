@@ -1,13 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useSearchParams } from "react-router-dom";
+import { fetchSingleHome } from "../../Redux";
 import { places } from "../../shared/data";
 import Rating from "./Rating";
 
 function Card4() {
+
   const params = new URLSearchParams(window.location.search);
   const title = params.get("title");
-  const place = places.find((e) => {
-    return e.title === title;
-  });
+
+  const homeData = useSelector(state=>state.homes)
+  const place = useSelector(state=>state.homes.home)
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchSingleHome(title));
+  }, []);
+
+
+  // const place = places.find((e) => {
+  //   return e.title === title;
+  // });
 
   const numberFormat = (value) =>
     new Intl.NumberFormat("en-IN", {
@@ -25,7 +39,22 @@ function Card4() {
   const subTotalPrice = place.price * numOfNights;
   const totalPrice = subTotalPrice + subTotalPrice * 0.062542;
 
-  return (
+  let tempDate = new Date(checkIn);
+  let noOfWeekends = 0;
+
+  while(tempDate<checkOut){
+    if((tempDate.getDay())===0 || (tempDate.getDay())===5 || (tempDate.getDay())===6 ){
+      noOfWeekends+=1;
+      tempDate.setDate(tempDate.getDate()+1)
+ 
+    }else{
+        tempDate.setDate(tempDate.getDate()+1)
+    }
+  }
+
+  let weekDays = numOfNights-noOfWeekends;
+
+  return homeData.loading ? ( <h1>Loading</h1> ) : homeData.error ? ( <h1>Error</h1> ) :  (
     <div className="col-lg-5 ps-xl-5">
       <div className="card border-0 shadow">
         <div className="card-body p-4">
@@ -110,9 +139,9 @@ function Card4() {
               <h6 className="text-primary">Flexible – free cancellation</h6>
               <p className="text-sm text-primary opacity-8 mb-0">
                 Cancel within 48 hours of booking to get a full refund.{" "}
-                <a href="#" className="text-reset ms-3">
+                <Link to="#" className="text-reset ms-3">
                   More details
-                </a>
+                </Link>
               </p>
             </div>
           </div>

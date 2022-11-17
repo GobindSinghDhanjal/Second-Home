@@ -60,23 +60,23 @@ function Contact() {
                 <div className="row">
                   <div className="col-sm-6">
                     <div className="mb-4">
-                      <label className="form-label" for="name">Your firstname *</label>
+                      <label className="form-label" htmlFor="name">Your firstname *</label>
                       <input className="form-control" type="text" name="name" id="name" placeholder="Enter your firstname" required="required"/>
                     </div>
                   </div>
                   <div className="col-sm-6">
                     <div className="mb-4">
-                      <label className="form-label" for="surname">Your lastname *</label>
+                      <label className="form-label" htmlFor="surname">Your lastname *</label>
                       <input className="form-control" type="text" name="surname" id="surname" placeholder="Enter your  lastname" required="required"/>
                     </div>
                   </div>
                 </div>
                 <div className="mb-4">
-                  <label className="form-label" for="email">Your email *</label>
+                  <label className="form-label" htmlFor="email">Your email *</label>
                   <input className="form-control" type="email" name="email" id="email" placeholder="Enter your  email" required="required"/>
                 </div>
                 <div className="mb-4">
-                  <label className="form-label" for="message">Your message for us *</label>
+                  <label className="form-label" htmlFor="message">Your message for us *</label>
                   <textarea className="form-control" rows="4" name="message" id="message" placeholder="Enter your message" required="required"></textarea>
                 </div>
                 <button className="btn btn-outline-primary" type="submit">Send message</button>

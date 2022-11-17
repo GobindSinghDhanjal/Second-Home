@@ -23,7 +23,6 @@ import Blog from "./Blog/Blog";
 import Detail from "./Detail/Detail";
 import { Provider } from "react-redux";
 import store from "../Redux/store";
-import Auth0ProviderWithHistory from "../auth0Provider";
 import { ReactSession } from "react-client-session";
 import Post from "./Blog/Post";
 import Team from "./Pages/Team";
@@ -40,14 +39,16 @@ import DetailRoom from "./Detail/DetailRoom";
 import Messages from "./User/Messages";
 import MessageDetail from "./User/MessageDetail";
 import AllBookings from "./User/AllBookings";
+import ScrollToTop from "../scrollToTop";
 ReactSession.setStoreType("localStorage");
+
 
 function App() {
   return (
     <Provider store={store}>
       <div>
         <BrowserRouter>
-          <Auth0ProviderWithHistory>
+        <ScrollToTop/>
             <Routes>
               {/***************** HOME *****************/}
               <Route path="/" element={<Home />} />
@@ -113,7 +114,6 @@ function App() {
               <Route path="/booking-details" element={<BookingDetails />} />
               <Route path="/invoice" element={<Invoice />} />
             </Routes>
-          </Auth0ProviderWithHistory>
         </BrowserRouter>
       </div>
     </Provider>

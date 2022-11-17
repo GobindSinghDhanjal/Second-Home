@@ -73,6 +73,8 @@ function Herohome2() {
                     <LocalizationProvider  dateAdapter={AdapterDayjs}>
                       <DatePicker
                         label="Check In"
+                        inputFormat="DD MMM YYYY"
+                        disableMaskedInput
                         value={checkIn}
                         disablePast
                         onChange={(newValue) => {
@@ -87,6 +89,8 @@ function Herohome2() {
                       <DatePicker
                         label="Check Out"
                         value={checkOut}
+                        inputFormat="DD MMM YYYY"
+                        disableMaskedInput
                         minDate={checkIn}
                         disablePast
                         onChange={(newValue) => {

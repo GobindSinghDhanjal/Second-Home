@@ -1,12 +1,11 @@
 import React from "react";
 import Header from "../subComponents/Header";
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 function PersonalInfo() {
 const tourist = useSelector((state) => state.tourist.tourist);
 
-  const dispatch = useDispatch();
 
   return (
     <div>

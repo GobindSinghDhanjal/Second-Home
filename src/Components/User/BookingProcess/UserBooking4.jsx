@@ -29,7 +29,7 @@ function UserBooking4() {
               <h1 className="h2 mb-5">
                 {" "}
                 Booking placed{" "}
-                <span className="text-muted float-end">Step 4</span>{" "}
+                <span className="text-muted float-end">Step 3</span>{" "}
               </h1>
               <div className="text-block">
                 <p className="text-muted">

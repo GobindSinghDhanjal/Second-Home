@@ -1,9 +1,11 @@
 import React from "react";
+import { Swiper } from "swiper/react";
 
 function Banner7() {
     return(
         <section>
         <div className="container-fluid px-0">
+        <Swiper>
           <div className="swiper-container instagram-slider">
             <div className="swiper-wrapper">
               <div className="swiper-slide overflow-hidden"><a href="#"><img className="img-fluid hover-scale" src="https://d19m59y37dris4.cloudfront.net/directory/2-0/img/instagram/instagram-1.jpg" alt=" "/></a></div>
@@ -27,6 +29,7 @@ function Banner7() {
               <div className="swiper-slide overflow-hidden"><a href="#"><img className="img-fluid hover-scale" src="https://d19m59y37dris4.cloudfront.net/directory/2-0/img/instagram/instagram-14.jpg" alt=" "/></a></div>
             </div>
           </div>
+          </Swiper>
         </div>
       </section>
     );

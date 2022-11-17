@@ -1,24 +1,31 @@
 import React, { useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { loginTourist } from "../../Redux";
-import { connect } from "react-redux";
 
-function SignIn(touristData) {
+function SignIn() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const dispatch = useDispatch();
 
+  const params = new URLSearchParams(window.location.search);
+  const title = params.get("title");
+  const checkIn = new Date(params.get("checkIn"));
+  const checkOut = new Date(params.get("checkOut"));
+  const guest = params.get("guest");
 
   function onLogin(e) {
     const postData = {
       username,
       password,
+      title,
+      checkIn,
+      checkOut,
+      guest,
     };
 
     dispatch(loginTourist(postData));
-    console.log(touristData.touristData.tourists.username);
 
     e.preventDefault();
   }
@@ -183,10 +190,4 @@ function SignIn(touristData) {
   );
 }
 
-const mapStateToProps = (state) => {
-  return {
-    touristData: state.tourist,
-  };
-};
-
-export default connect(mapStateToProps)(SignIn);
+export default SignIn;

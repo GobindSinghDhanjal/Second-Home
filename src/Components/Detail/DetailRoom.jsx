@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { places, reviews } from "../../shared/data";
 import Card1 from "../subComponents/Card1";
 import Header from "../subComponents/Header";
@@ -12,19 +12,29 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchHomes, fetchSingleHome } from "../../Redux";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { useNavigate } from 'react-router-dom';
+
 
 function DetailRoom() {
-  //////////////   FINDING GUEST   ////////////////
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const title = searchParams.get("title");
-  const place = places.find((e) => {
-    return e.title === title;
-  });
+
+  const navigate = useNavigate();
+
+  const homeData = useSelector((state) => state.homes);
+  const place = useSelector((state) => state.homes.home);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchSingleHome(title));
+  }, []);
 
   const today = new Date();
   var nextDay = new Date();
-  nextDay.setDate(today.getDate()+1);
+  nextDay.setDate(today.getDate() + 1);
 
   const [checkIn, setCheckIn] = React.useState(today);
   const [checkOut, setCheckOut] = React.useState(nextDay);
@@ -34,37 +44,53 @@ function DetailRoom() {
   function onBooking(e) {
     e.preventDefault();
 
-    window.location.href =
-      "/user-booking-1?title=" +
-      title +
-      "&guest=" +
-      NumOfGuests +
-      "&checkIn=" +
-      checkIn +
-      "&checkOut=" +
-      checkOut;
+    const url =    "/user-booking-1?title=" +
+    title +
+    "&guest=" +
+    NumOfGuests +
+    "&checkIn=" +
+    checkIn +
+    "&checkOut=" +
+    checkOut;
+    navigate(url);
+
   }
 
   const numberFormat = (value) =>
-  new Intl.NumberFormat("en-IN", {
-    style: "currency",
-    currency: "INR",
-    minimumFractionDigits:0,
-    maximumFractionDigits:0,
-  }).format(value);
+    new Intl.NumberFormat("en-IN", {
+      style: "currency",
+      currency: "INR",
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    }).format(value);
 
-  return (
+  return homeData.loading ? (
+    <h1>Loading</h1>
+  ) : homeData.error ? (
+    <h1>Error</h1>
+  ) : (
     <div>
-      <Header />
+      <Header key="" />
       <br />
       <br />
       <section>
         {/* <!-- Slider main container--> */}
-        <div className="swiper-container detail-slider slider-gallery">
-          {/* <!-- Additional required wrapper--> */}
-          <div className="swiper-wrapper">
-            {/* <!-- Slides--> */}
+        <Swiper
+          loop={true}
+          className="pb-2"
+          breakpoints={{
+            0: { slidesPerView: 1, spaceBetween: 0 },
+            500: { slidesPerView: 1.3, spaceBetween: 0 },
+            750: { slidesPerView: 2, spaceBetween: 0 },
+            900: { sliderPerView: 3.5, spaceBetween: 0 },
+          }}
+          centeredSlides
+          centeredSlidesBounds
+          slidesPerView={3.5}
+        >
+          <SwiperSlide>
             <div className="swiper-slide">
+              {" "}
               <a
                 href="https://d19m59y37dris4.cloudfront.net/directory/2-0/img/photo/photo-1426122402199-be02db90eb90.jpg"
                 data-toggle="gallery-top"
@@ -77,7 +103,26 @@ function DetailRoom() {
                 />
               </a>
             </div>
+          </SwiperSlide>
+          <SwiperSlide>
             <div className="swiper-slide">
+              {" "}
+              <a
+                href="https://d19m59y37dris4.cloudfront.net/directory/2-0/img/photo/photo-1426122402199-be02db90eb90.jpg"
+                data-toggle="gallery-top"
+                title="Our street"
+              >
+                <img
+                  className="img-fluid"
+                  src="https://d19m59y37dris4.cloudfront.net/directory/2-0/img/photo/photo-1426122402199-be02db90eb90.jpg"
+                  alt="Our street"
+                />
+              </a>
+            </div>
+          </SwiperSlide>
+          <SwiperSlide>
+            <div className="swiper-slide">
+              {" "}
               <a
                 href="img/photo/photo-1512917774080-9991f1c4c750.jpg"
                 data-toggle="gallery-top"
@@ -90,7 +135,10 @@ function DetailRoom() {
                 />
               </a>
             </div>
+          </SwiperSlide>
+          <SwiperSlide>
             <div className="swiper-slide">
+              {" "}
               <a
                 href="img/photo/photo-1494526585095-c41746248156.jpg"
                 data-toggle="gallery-top"
@@ -103,33 +151,10 @@ function DetailRoom() {
                 />
               </a>
             </div>
+          </SwiperSlide>
+          <SwiperSlide>
             <div className="swiper-slide">
-              <a
-                href="img/photo/photo-1484154218962-a197022b5858.jpg"
-                data-toggle="gallery-top"
-                title="Kitchen"
-              >
-                <img
-                  className="img-fluid"
-                  src="https://d19m59y37dris4.cloudfront.net/directory/2-0/img/photo/photo-1484154218962-a197022b5858.jpg"
-                  alt="Kitchen"
-                />
-              </a>
-            </div>
-            <div className="swiper-slide">
-              <a
-                href="img/photo/photo-1522771739844-6a9f6d5f14af.jpg"
-                data-toggle="gallery-top"
-                title="Bedroom"
-              >
-                <img
-                  className="img-fluid"
-                  src="https://d19m59y37dris4.cloudfront.net/directory/2-0/img/photo/photo-1522771739844-6a9f6d5f14af.jpg"
-                  alt="Bedroom"
-                />
-              </a>
-            </div>
-            <div className="swiper-slide">
+              {" "}
               <a
                 href="img/photo/photo-1488805990569-3c9e1d76d51c.jpg"
                 data-toggle="gallery-top"
@@ -142,11 +167,8 @@ function DetailRoom() {
                 />
               </a>
             </div>
-          </div>
-          <div className="swiper-pagination swiper-pagination-white"></div>
-          <div className="swiper-button-prev swiper-button-white"></div>
-          <div className="swiper-button-next swiper-button-white"></div>
-        </div>
+          </SwiperSlide>
+        </Swiper>
       </section>
       <div className="container py-5">
         <div className="row">
@@ -343,12 +365,12 @@ function DetailRoom() {
                 </div>
               </div>
             </div>
-            <div className="text-block">
+            {/* <div className="text-block">
               <h5 className="mb-4">Listing location</h5>
               <div className="map-wrapper-300 mb-3">
                 <div className="h-100" id="detailMap"></div>
               </div>
-            </div>
+            </div> */}
             <div className="text-block">
               <h5 className="mb-4">Gallery</h5>
               <div className="row gallery mb-3 ms-n1 me-n1">
@@ -435,9 +457,11 @@ function DetailRoom() {
             <div className="text-block">
               <p className="subtitle text-sm text-primary">Reviews </p>
               <h5 className="mb-4">Listing Reviews </h5>
-              {reviews.map((review) => {
+              {reviews.map((review, j) => {
                 return (
                   <Review
+                    key={j}
+                    id={j}
                     name={review.name}
                     profileImg={review.profileImg}
                     rating={review.rating}
@@ -468,7 +492,7 @@ function DetailRoom() {
                     <div className="row">
                       <div className="col-sm-6">
                         <div className="mb-4">
-                          <label className="form-label" for="name">
+                          <label className="form-label" htmlFor="name">
                             Your name *
                           </label>
                           <input
@@ -483,7 +507,7 @@ function DetailRoom() {
                       </div>
                       <div className="col-sm-6">
                         <div className="mb-4">
-                          <label className="form-label" for="rating">
+                          <label className="form-label" htmlFor="rating">
                             Your rating *
                           </label>
                           <select
@@ -511,7 +535,7 @@ function DetailRoom() {
                       </div>
                     </div>
                     <div className="mb-4">
-                      <label className="form-label" for="email">
+                      <label className="form-label" htmlFor="email">
                         Your email *
                       </label>
                       <input
@@ -524,7 +548,7 @@ function DetailRoom() {
                       />
                     </div>
                     <div className="mb-4">
-                      <label className="form-label" for="review">
+                      <label className="form-label" htmlFor="review">
                         Review text *
                       </label>
                       <textarea
@@ -550,7 +574,10 @@ function DetailRoom() {
               style={{ top: "100px" }}
             >
               <p className="text-muted">
-                <span className="text-primary h2">{numberFormat(place.price)}</span>&nbsp; per night
+                <span className="text-primary h2">
+                  {numberFormat(place.price)}
+                </span>
+                &nbsp; per night
               </p>
               <hr className="my-4" />
               <form
@@ -558,7 +585,7 @@ function DetailRoom() {
                 id="booking-form"
                 method="get"
                 action="#"
-                autocomplete="off"
+                autoComplete="off"
                 onSubmit={onBooking}
               >
                 <div className="mb-4">
@@ -566,9 +593,11 @@ function DetailRoom() {
                     <DatePicker
                       required
                       className="form-control"
+                      inputFormat="DD MMM YYYY"
                       label="Check In"
                       disablePast
                       value={checkIn}
+                      disableMaskedInput
                       onChange={(newValue) => {
                         nextDay.setDate(newValue.$d.getDate() + 1);
                         setCheckOut(nextDay);
@@ -583,9 +612,11 @@ function DetailRoom() {
                     <DatePicker
                       required
                       className="form-control"
+                      inputFormat="DD MMM YYYY"
                       label="Check Out"
+                      disableMaskedInput
                       value={checkOut}
-                      minDate={new Date(checkIn).setDate(checkIn.getDate()+1)}
+                      minDate={new Date(checkIn).setDate(checkIn.getDate() + 1)}
                       onChange={(newValue) => {
                         setCheckOut(newValue.$d);
                       }}
@@ -598,10 +629,12 @@ function DetailRoom() {
                     <InputLabel id="demo-simple-select-label">
                       Guests
                     </InputLabel>
-                    <Select required
+                    <Select
+                      defaultValue=""
+                      required
                       labelId="demo-simple-select-label"
                       id="demo-simple-select"
-                      value={NumOfGuests}
+                      value={NumOfGuests || ""}
                       label="Guests"
                       onChange={(e) => {
                         setNumOfGuests(e.target.value);
@@ -648,24 +681,40 @@ function DetailRoom() {
             You may also like{" "}
           </p>
           {/* <!-- Slider main container--> */}
-          <div
-            className="swiper-container swiper-container-mx-negative swiper-init pt-3"
-            data-swiper='{"slidesPerView":4,"spaceBetween":20,"loop":true,"roundLengths":true,"breakpoints":{"1200":{"slidesPerView":3},"991":{"slidesPerView":2},"565":{"slidesPerView":1}},"pagination":{"el":".swiper-pagination","clickable":true,"dynamicBullets":true}}'
+          <Swiper
+            loop={true}
+            className="pb-2"
+            breakpoints={{
+              0: { slidesPerView: 1, spaceBetween: 30 },
+              500: { slidesPerView: 1.3, spaceBetween: 30 },
+              750: { slidesPerView: 2, spaceBetween: 30 },
+              900: { sliderPerView: 3.5, spaceBetween: 30 },
+            }}
+            centeredSlides
+            centeredSlidesBounds
+            slidesPerView={3.5}
           >
-            {/* <!-- Additional required wrapper--> */}
-            <div className="swiper-wrapper pb-5">
-              {/* <!-- Slides--> */}
-
-              {places.map((place, i) => {
-                return (
-                  <div className="swiper-slide h-auto px-2">
+            {places.map((place, i) => {
+              return (
+                <SwiperSlide key={i}>
+                  <div
+                    key={i}
+                    className="swiper-slide h-auto px-2"
+                    style={{
+                      width: "344px",
+                      marginRight: "20px",
+                    }}
+                  >
                     {/* <!-- place item--> */}
                     <div
+                      key={i}
                       className="w-100 h-100 hover-animate"
                       data-marker-id="59c0c8e3a31e62979bf147c9"
                     >
                       <Card1
                         key={i}
+                        id={place._id}
+                        nextUrl="/detail-room"
                         name={place.name}
                         title={place.title}
                         placeImg={place.placeImg}
@@ -676,12 +725,10 @@ function DetailRoom() {
                       />
                     </div>
                   </div>
-                );
-              })}
-            </div>
-            {/* <!-- If we need pagination--> */}
-            <div className="swiper-pagination"></div>
-          </div>
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
         </div>
       </div>
     </div>

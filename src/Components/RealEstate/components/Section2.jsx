@@ -1,6 +1,7 @@
 import React from "react";
 import Card2 from "../../subComponents/Card2";
 import { listings } from "../../../shared/data";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 function Section2() {
   return (
@@ -21,29 +22,47 @@ function Section2() {
       </div>
       <div className="container-fluid">
         {/* <!-- Slider main container--> */}
-        <div className="swiper-container swiper-container-mx-negative items-slider-full px-lg-5 pt-3">
-          {/* <!-- Additional required wrapper--> */}
-          <div className="swiper-wrapper pb-5">
-            {/* <!-- Slides--> */}
+        <Swiper
+          loop={true}
+          breakpoints={{
+            0: { slidesPerView: 1, spaceBetween: 20 },
+            500: { slidesPerView: 1, spaceBetween: 20 },
+            750: { slidesPerView: 3, spaceBetween: 20 },
+            900: { sliderPerView: 5.5, spaceBetween: 20 },
+          }}
+          centeredSlides
+          centeredSlidesBounds
+          slidesPerView={5.5}
+        >
+    
+              {/* <!-- Slides--> */}
 
-            {listings.map((listing) => {
-              return (
-                <Card2
-                  title={listing.title}
-                  type={listing.type}
-                  bed={listing.bed}
-                  area={listing.area}
-                  location={listing.location}
-                  price={listing.price}
-                  washrooms={listing.washrooms}
-                  placeImg={listing.placeImg}
-                />
-              );
-            })}
-          </div>
-          {/* <!-- If we need pagination--> */}
-          <div className="swiper-pagination"></div>
-        </div>
+              {listings.map((listing,i) => {
+                return (
+                  <SwiperSlide key={i}>
+                <div
+                  key={i}
+                  className="h-auto px-2"
+                  style={{
+                    width: "250px"
+                  }}
+                >
+                  <Card2
+                    title={listing.title}
+                    type={listing.type}
+                    bed={listing.bed}
+                    area={listing.area}
+                    location={listing.location}
+                    price={listing.price}
+                    washrooms={listing.washrooms}
+                    placeImg={listing.placeImg}
+                  />
+                  </div>
+                  </SwiperSlide>
+                );
+              })}
+     
+        </Swiper>
       </div>
     </section>
   );

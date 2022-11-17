@@ -1,13 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Header from "../subComponents/Header";
 import CheckIcon from "@mui/icons-material/Check";
 import ReviewsIcon from "@mui/icons-material/Reviews";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import Card1 from "../subComponents/Card1";
-import { places, reviews } from "../../shared/data";
+import { reviews } from "../../shared/data";
 import Review from "../subComponents/Review";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchHomes } from "../../Redux";
 
 function Profile() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchHomes());
+  }, []);
+
+  const places = useSelector((state) => state.homes.homes);
   return (
     <div>
       <Header />
@@ -92,6 +99,7 @@ function Profile() {
                         <Card1
                           key={i}
                           name={place.name}
+                          nextUrl="/detail-room"
                           title={place.title}
                           placeImg={place.placeImg}
                           profileImg={place.profileImg}

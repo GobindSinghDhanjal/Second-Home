@@ -12,9 +12,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "react-router-dom";
 
 function UserBooking2() {
-  const { loginWithRedirect } = useAuth0();
-
-  const { user, isAuthenticated, isLoading } = useAuth0();
+  const { user, isAuthenticated, isLoading, loginWithPopup } = useAuth0();
 
   //////////////////GETTING TOKEN /////////////////////
 
@@ -23,7 +21,6 @@ function UserBooking2() {
   //////////////   FINDING GUEST   ////////////////
   const params = new URLSearchParams(window.location.search);
   const title = params.get("title");
-
 
   const homeData = useSelector((state) => state.homes);
   const place = useSelector((state) => state.homes.home);
@@ -77,7 +74,7 @@ function UserBooking2() {
 
     if (!isAuthenticated) {
       const url =
-        "/user-booking-2?title=" +
+        "user-booking-2?title=" +
         title +
         "&guest=" +
         guest +
@@ -85,7 +82,8 @@ function UserBooking2() {
         checkIn +
         "&checkOut=" +
         checkOut;
-      loginWithRedirect({ appState: { targetUrl: url } });
+
+      loginWithPopup();
 
       return;
     }
@@ -99,7 +97,6 @@ function UserBooking2() {
       return;
     }
 
-    console.log(user);
 
     const params = new URLSearchParams();
     // params.append("token", token);

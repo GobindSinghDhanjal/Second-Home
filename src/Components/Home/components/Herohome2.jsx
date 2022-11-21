@@ -5,6 +5,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
 import "react-datepicker/dist/react-datepicker.css";
+import { MobileDatePicker } from "@mui/x-date-pickers/MobileDatePicker";
 
 function Herohome2() {
   const [checkIn, setCheckIn] = React.useState(null);
@@ -51,7 +52,7 @@ function Herohome2() {
                 Stay like a local
               </h1>
             </div>
-            <div className="search-bar mt-5 p-3 p-lg-1 ps-lg-4">
+            <div className="search-bar mt-5 p-4 p-lg-1 ps-lg-4">
               <form action="#">
                 <div className="row">
                   <div className="col-lg-4 d-flex align-items-center form-group">
@@ -73,6 +74,7 @@ function Herohome2() {
                     <LocalizationProvider  dateAdapter={AdapterDayjs}>
                       <DatePicker
                         label="Check In"
+                        className="datetime-picker-mobile"
                         inputFormat="DD MMM YYYY"
                         disableMaskedInput
                         value={checkIn}
@@ -89,6 +91,7 @@ function Herohome2() {
                       <DatePicker
                         label="Check Out"
                         value={checkOut}
+                        className="datetime-picker-mobile"
                         inputFormat="DD MMM YYYY"
                         disableMaskedInput
                         minDate={checkIn}

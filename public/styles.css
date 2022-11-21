@@ -1,3 +1,17 @@
-.homepage-icons{
-    font-size: x-large;
+.homepage-icons {
+  font-size: x-large;
+}
+
+.swiper-button-prev{
+  color: white !important;
+}
+.swiper-button-next{
+  color: white !important;
+}
+
+
+@media screen and (max-width: 991px) {
+  .datetime-picker-mobile {
+    width: 100%;
+  }
 }

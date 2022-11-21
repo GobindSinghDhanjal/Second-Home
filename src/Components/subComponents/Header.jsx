@@ -17,11 +17,6 @@ function Header() {
     return <div>Loading ...</div>;
   }
 
-  console.log("User : ");
-  console.log(user);
-  console.log("Authenticated : ");
-  console.log(isAuthenticated);
-
   return (
     <header className="header">
       <nav className="navbar navbar-expand-lg fixed-top shadow navbar-light bg-white">
@@ -253,6 +248,14 @@ function Header() {
                                 to="/user-booking-1"
                               >
                                 Booking process{" "}
+                              </Link>
+                            </li>
+                            <li className="megamenu-list-item">
+                              <Link
+                                className="megamenu-list-link"
+                                to="/all-bookings"
+                              >
+                                All Bookings{" "}
                               </Link>
                             </li>
                             <li className="megamenu-list-item">

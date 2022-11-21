@@ -2,3 +2,4 @@
 export * from "./user/tourist/touristAction";
 export * from "./account/tourist/touristAccountAction"
 export * from "./home/homeAction";
+export * from "./bookings/bookingAction";

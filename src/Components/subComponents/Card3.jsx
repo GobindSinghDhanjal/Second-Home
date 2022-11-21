@@ -1,7 +1,11 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Rating from "./Rating";
 
 function Card3(props) {
+
+  const url="/booking-details?booking-id="+props.bookingId;
+  
   return (
     <div
       className="col-xl-3 col-md-4 col-sm-6 mb-5"
@@ -9,7 +13,7 @@ function Card3(props) {
     >
       <div className="card hover-animate h-100 border-0 shadow">
         <div className="card-img-top overflow-hidden">
-          <a href="user-booking-detail.html">
+          <a href={url}>
             <img className="img-fluid" src={props.imageUrl} alt={props.title} />
           </a>
         </div>
@@ -19,7 +23,7 @@ function Card3(props) {
             <h6 className="card-title">
               <a
                 className="text-decoration-none text-dark"
-                href="user-booking-detail.html"
+                href={url}
               >
                 {props.title}
               </a>
@@ -28,9 +32,9 @@ function Card3(props) {
               <p className="flex-grow-1 mb-0 text-muted text-sm">
                 {props.type}
               </p>
-              <p className="flex-shrink-1 mb-0 card-stars text-xs text-end">
+              <div className="flex-shrink-1 mb-0 card-stars text-xs text-end">
               <Rating rating={props.rating} class1="fa fa-star text-warning" class2="fa fa-star text-gray-300" />
-              </p>
+              </div>
             </div>
           </div>
         </div>

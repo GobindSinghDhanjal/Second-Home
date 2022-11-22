@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../subComponents/Header";
 import { tourist } from "../../shared/data";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,8 +9,15 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
+import LocationMap from "../subComponents/LocationMap";
 
 function BookingDetails() {
+
+  const [center, setCenter] = useState({
+    lat: 28.535517,
+    lng: 77.391029,
+  });
+
   const numberFormat = (value) =>
     new Intl.NumberFormat("en-IN", {
       style: "currency",
@@ -349,7 +356,9 @@ function BookingDetails() {
             </div>
           </div>
           <div className="col-lg-5 col-xl-7 map-side-lg px-lg-0">
-            <div className="map-full shadow-left" id="detailSideMap"></div>
+            <div className="map-full shadow-left" id="detailSideMap">
+            <LocationMap zoom={15} center={center}/>
+            </div>
           </div>
         </div>
       </div>

@@ -66,17 +66,23 @@ export const fetchHomes = () => {
 };
 
 export const fetchSingleHome = (title) => {
-    return  (dispatch) => {
-      dispatch(fetchSingleHomeRequest);
-      axios
-        .get(`http://localhost:4000/home/${title}`)
-        .then((response) => {
+  return (dispatch) => {
+    dispatch(fetchSingleHomeRequest);
+    axios
+      .get(`http://localhost:4000/home/${title}`)
+      .then((response) => {
+        if (response.data.foundHome) {
+          const home = response.data.foundHome;
+          dispatch(fetchSingleHomeSuccess(home));
+        } else {
           const home = response.data;
           dispatch(fetchSingleHomeSuccess(home));
-        })
-        .catch((error) => {
-          const errorMsg = error.message;
-          dispatch(fetchSingleHomeFailure(errorMsg));
-        });
-    };
+        }
+      })
+      .catch((error) => {
+        console.log("in error");
+        const errorMsg = error.message;
+        dispatch(fetchSingleHomeFailure(errorMsg));
+      });
   };
+};

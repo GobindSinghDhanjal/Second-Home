@@ -1,13 +1,18 @@
 import { TextField } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import { venues } from "../../shared/data";
 import Header from "../subComponents/Header";
+import LocationMap from "../subComponents/LocationMap";
 import VenueItem from "../subComponents/VenueItem";
 import Neighbour from "./components/Neighbour";
 import SortBy from "./components/SortBy";
 import SubCategory from "./components/SubCategory";
 
 function Category() {
+  const [center, setCenter] = useState({
+    lat: 28.535517,
+    lng: 77.391029,
+  });
   return (
     <div>
       <Header />
@@ -370,8 +375,10 @@ function Category() {
               </ul>
             </nav>
           </div>
-          <div className="col-lg-6 map-side-lg pe-lg-0">
-            <div className="map-full shadow-left" id="categorySideMap"></div>
+          <div className="col-lg-6 map-side-lg px-lg-0">
+            <div className="map-full shadow-right" id="categorySideMap">
+            <LocationMap zoom={15} center={center}/>
+            </div>
           </div>
         </div>
       </div>

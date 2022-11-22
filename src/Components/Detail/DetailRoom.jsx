@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { places, reviews } from "../../shared/data";
 import Card1 from "../subComponents/Card1";
 import Header from "../subComponents/Header";
@@ -15,10 +15,15 @@ import Select from "@mui/material/Select";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchHomes, fetchSingleHome } from "../../Redux";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { useNavigate } from 'react-router-dom';
-
+import { useNavigate } from "react-router-dom";
+import LocationMap from "../subComponents/LocationMap";
 
 function DetailRoom() {
+  const [center, setCenter] = useState({
+    lat: 28.535517,
+    lng: 77.391029,
+  });
+
   const [searchParams] = useSearchParams();
   const title = searchParams.get("title");
 
@@ -44,16 +49,16 @@ function DetailRoom() {
   function onBooking(e) {
     e.preventDefault();
 
-    const url =    "/user-booking-1?title=" +
-    title +
-    "&guest=" +
-    NumOfGuests +
-    "&checkIn=" +
-    checkIn +
-    "&checkOut=" +
-    checkOut;
+    const url =
+      "/user-booking-1?title=" +
+      title +
+      "&guest=" +
+      NumOfGuests +
+      "&checkIn=" +
+      checkIn +
+      "&checkOut=" +
+      checkOut;
     navigate(url);
-
   }
 
   const numberFormat = (value) =>
@@ -64,12 +69,19 @@ function DetailRoom() {
       maximumFractionDigits: 0,
     }).format(value);
 
+  const [map, setMap] = React.useState(null);
+
+  const onUnmount = React.useCallback(function callback(map) {
+    setMap(null);
+  }, []);
+
   return homeData.loading ? (
     <h1>Loading</h1>
   ) : homeData.error ? (
     <h1>Error</h1>
   ) : (
     <div>
+      {console.log(homeData)}
       <Header key="" />
       <br />
       <br />
@@ -365,12 +377,12 @@ function DetailRoom() {
                 </div>
               </div>
             </div>
-            {/* <div className="text-block">
+            <div className="text-block">
               <h5 className="mb-4">Listing location</h5>
               <div className="map-wrapper-300 mb-3">
-                <div className="h-100" id="detailMap"></div>
+                <LocationMap center={center} />
               </div>
-            </div> */}
+            </div>
             <div className="text-block">
               <h5 className="mb-4">Gallery</h5>
               <div className="row gallery mb-3 ms-n1 me-n1">

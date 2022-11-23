@@ -1,6 +1,7 @@
 import React from "react";
 import { venues } from "../../shared/data";
 import Header from "../subComponents/Header";
+import LocationMap from "../subComponents/LocationMap";
 import VenueItem from "../subComponents/VenueItem";
 
 function Category1() {
@@ -9,9 +10,12 @@ function Category1() {
       <Header />
       <br />
       <br />
+
       <section>
-        <div className="map-wrapper-450">
-          <div className="h-100" id="categoryMap"></div>
+        <div className="map-wrapper-450 mt-3">
+          <div className="h-100" id="categoryMap">
+          <LocationMap zoom={5} center={{lat:23,lng:74}} />
+          </div>
         </div>
       </section>
       <section className="py-5 bg-gray-100 shadow">

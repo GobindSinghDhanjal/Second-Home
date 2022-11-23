@@ -13,14 +13,22 @@ let DefaultIcon = L.icon({
 L.Marker.prototype.options.icon = DefaultIcon;
 
 function LocationMap(props) {
-    console.log(props);
-  return (
-    <MapContainer center={props.center} zoom={props.zoom || 10} scrollWheelZoom={true}>
+  console.log(props);
+
+  const center={
+    lat:0,
+    lng:0
+  }
+
+  return !(props.center)? (<div>Loading</div>) :(
+    <MapContainer
+      center={props.center}
+      zoom={props.zoom || 10}
+      scrollWheelZoom={true}
+    >
       <TileLayer
-        attribution={
-          '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }
-        url={"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"}
+        // url={"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"}
+        url={"https://api.maptiler.com/maps/basic-v2/256/{z}/{x}/{y}.png?key=IMBxDRtRVWm5cCGy2jmp"}
       />
       <Marker position={props.center}></Marker>
     </MapContainer>

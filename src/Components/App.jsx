@@ -1,7 +1,7 @@
 import React from "react";
 import Home from "./Home/Home";
 import SignUp from "./User/SignUp";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import Profile from "./User/Profile";
 import Account from "./Account/Account";
 import BookingDetails from "./User/BookingDetails";

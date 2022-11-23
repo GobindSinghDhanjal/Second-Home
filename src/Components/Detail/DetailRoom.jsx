@@ -17,12 +17,10 @@ import { fetchHomes, fetchSingleHome } from "../../Redux";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useNavigate } from "react-router-dom";
 import LocationMap from "../subComponents/LocationMap";
+import Delayed from "../subComponents/Delayed";
+import Card1Group from "../subComponents/Card1Group";
 
 function DetailRoom() {
-  const [center, setCenter] = useState({
-    lat: 28.535517,
-    lng: 77.391029,
-  });
 
   const [searchParams] = useSearchParams();
   const title = searchParams.get("title");
@@ -35,7 +33,8 @@ function DetailRoom() {
 
   useEffect(() => {
     dispatch(fetchSingleHome(title));
-  }, []);
+    dispatch(fetchHomes());
+  }, [dispatch]);
 
   const today = new Date();
   var nextDay = new Date();
@@ -69,18 +68,16 @@ function DetailRoom() {
       maximumFractionDigits: 0,
     }).format(value);
 
-  const [map, setMap] = React.useState(null);
-
-  const onUnmount = React.useCallback(function callback(map) {
-    setMap(null);
-  }, []);
 
   return homeData.loading ? (
     <h1>Loading</h1>
   ) : homeData.error ? (
     <h1>Error</h1>
-  ) : (
+  ) : !place ?(<div>Loading</div>):
+  !(place.coordinates)?(<div>Loading</div>) :(
+    <Delayed waitBeforeShow={200}>
     <div>
+  
       {console.log(homeData)}
       <Header key="" />
       <br />
@@ -380,7 +377,11 @@ function DetailRoom() {
             <div className="text-block">
               <h5 className="mb-4">Listing location</h5>
               <div className="map-wrapper-300 mb-3">
-                <LocationMap center={center} />
+                <Delayed waitBeforeShow={1500}>
+                  <LocationMap
+                    center={{lat: place.coordinates.latitude, lng: place.coordinates.longitude}}
+                  />
+                </Delayed>
               </div>
             </div>
             <div className="text-block">
@@ -693,57 +694,12 @@ function DetailRoom() {
             You may also like{" "}
           </p>
           {/* <!-- Slider main container--> */}
-          <Swiper
-            loop={true}
-            className="pb-2"
-            breakpoints={{
-              0: { slidesPerView: 1, spaceBetween: 30 },
-              500: { slidesPerView: 1.3, spaceBetween: 30 },
-              750: { slidesPerView: 2, spaceBetween: 30 },
-              900: { sliderPerView: 3.5, spaceBetween: 30 },
-            }}
-            centeredSlides
-            centeredSlidesBounds
-            slidesPerView={3.5}
-          >
-            {places.map((place, i) => {
-              return (
-                <SwiperSlide key={i}>
-                  <div
-                    key={i}
-                    className="swiper-slide h-auto px-2"
-                    style={{
-                      width: "344px",
-                      marginRight: "20px",
-                    }}
-                  >
-                    {/* <!-- place item--> */}
-                    <div
-                      key={i}
-                      className="w-100 h-100 hover-animate"
-                      data-marker-id="59c0c8e3a31e62979bf147c9"
-                    >
-                      <Card1
-                        key={i}
-                        id={place._id}
-                        nextUrl="/detail-room"
-                        name={place.name}
-                        title={place.title}
-                        placeImg={place.placeImg}
-                        profileImg={place.profileImg}
-                        type={place.type}
-                        price={place.price}
-                        rating={place.rating}
-                      />
-                    </div>
-                  </div>
-                </SwiperSlide>
-              );
-            })}
-          </Swiper>
+          <Card1Group/>
         </div>
       </div>
+   
     </div>
+    </Delayed>
   );
 }
 

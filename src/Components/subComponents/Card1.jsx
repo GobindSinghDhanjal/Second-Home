@@ -18,6 +18,7 @@ function Card1(props) {
   return (
 
         <div className="card h-100 border-0 shadow" >
+        <a href={url}>
           <div className="card-img-top overflow-hidden gradient-overlay">
             {" "}
             <img
@@ -26,7 +27,7 @@ function Card1(props) {
               alt={props.title}
             />
             {/* <a className="tile-link" href={url}></a> */}
-            <Link to={url}></Link>
+           
             <div className="card-img-overlay-bottom z-index-20">
               <div className="d-flex text-white text-sm align-items-center">
                 <img
@@ -37,19 +38,22 @@ function Card1(props) {
                 <div>{props.name}</div>
               </div>
             </div>
+         
             <div className="card-img-overlay-top text-end">
-              <a
-                className="card-fav-icon position-relative z-index-40" href=" "
+              <Link
+                className="card-fav-icon position-relative z-index-40" to=" "
               >
                 <i className="fa fa-heart" aria-hidden="true"></i>
-              </a>
+              </Link>
             </div>
           </div>
+  
+          </a>
           <div className="card-body d-flex align-items-center" >
             <div className="w-100">
               <h6 className="card-title" style={{minHeight: "45px"}}>
  
-                <Link className="text-decoration-none text-dark" to={url}> {props.title}</Link>
+                <a className="text-decoration-none text-dark" href={url}> {props.title}</a>
  
               </h6>
               <div className="d-flex card-subtitle mb-3">

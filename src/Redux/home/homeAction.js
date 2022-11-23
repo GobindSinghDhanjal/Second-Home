@@ -71,13 +71,8 @@ export const fetchSingleHome = (title) => {
     axios
       .get(`http://localhost:4000/home/${title}`)
       .then((response) => {
-        if (response.data.foundHome) {
-          const home = response.data.foundHome;
-          dispatch(fetchSingleHomeSuccess(home));
-        } else {
           const home = response.data;
           dispatch(fetchSingleHomeSuccess(home));
-        }
       })
       .catch((error) => {
         console.log("in error");

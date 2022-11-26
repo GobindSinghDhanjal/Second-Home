@@ -1,12 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import Card1 from "./Card1";
+import axios from "axios";
 
 function Card1Group() {
 
-    const homes = useSelector((state) => state.homes.homes);
+    // const homes = useSelector((state) => state.homes.homes);
+
+    const [homes, setHomes] = useState([]);
+
+    useEffect(()=>{
+
+      axios
+      .get("http://localhost:4000/featuredHomes")
+      .then((response) => {
+        setHomes(response.data);
+      })
+      .catch((error) => {
+        const errorMsg = error.message;
+        console.log(errorMsg);
+      });
+     
+    },[])
 
     return(
         <Swiper
@@ -50,6 +67,7 @@ function Card1Group() {
                     type={place.type}
                     price={place.price}
                     rating={place.rating}
+                    monthwise_season_factor={place.monthwise_season_factor}
                   />
                 </div>
               </div>

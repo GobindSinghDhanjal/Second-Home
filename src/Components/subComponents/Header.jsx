@@ -24,11 +24,12 @@ function Header() {
           <div className="d-flex align-items-center">
             <Link className="navbar-brand py-1" to="/">
               <img
-                src="https://d19m59y37dris4.cloudfront.net/directory/2-0/img/logo.svg"
+              className="logo-img"
+                src={process.env.PUBLIC_URL+"/AlohaLogo.png"}
                 alt="Directory logo"
               />
             </Link>
-            <form
+            {/* <form
               className="form-inline d-none d-sm-flex"
               action="#"
               id="search"
@@ -46,7 +47,7 @@ function Header() {
                   type="search"
                 />
               </div>
-            </form>
+            </form> */}
           </div>
           <button
             className="navbar-toggler navbar-toggler-right"
@@ -109,7 +110,7 @@ function Header() {
                   to="/"
                   data-bs-toggle="dropdown"
                 >
-                  Template
+                  Second Home
                 </Link>
                 <div
                   className="dropdown-menu megamenu py-lg-0"
@@ -139,7 +140,7 @@ function Header() {
                             <li className="megamenu-list-item">
                               <Link
                                 className="megamenu-list-link"
-                                to="/category"
+                                to="/category?location=All"
                               >
                                 Category - Map on the right{" "}
                               </Link>

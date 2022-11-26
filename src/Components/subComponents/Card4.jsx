@@ -6,18 +6,16 @@ import { places } from "../../shared/data";
 import Rating from "./Rating";
 
 function Card4() {
-
   const params = new URLSearchParams(window.location.search);
   const title = params.get("title");
 
-  const homeData = useSelector(state=>state.homes)
-  const place = useSelector(state=>state.homes.home)
+  const homeData = useSelector((state) => state.homes);
+  const place = useSelector((state) => state.homes.home);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchSingleHome(title));
   }, []);
-
 
   // const place = places.find((e) => {
   //   return e.title === title;
@@ -36,25 +34,72 @@ function Card4() {
 
   const numOfNights = Math.floor((checkOut - checkIn) / (1000 * 60 * 60 * 24));
 
-  const subTotalPrice = place.price * numOfNights;
-  const totalPrice = subTotalPrice + subTotalPrice * 0.062542;
+  const weekdayArray = [1, 2, 3, 4];
+  const weekendArray = [0, 5, 6];
+
+  function countCertainDays(days, d0, d1) {
+    var ndays = Math.round((d1 - d0) / (24 * 3600 * 1000));
+    var sum = function (a, b) {
+      return a + Math.floor((ndays + ((d0.getDay() + 6 - b) % 7)) / 7);
+    };
+    return days.reduce(sum, 0);
+  }
+
+  const nweekends = countCertainDays(weekendArray, checkIn, checkOut);
+  const nweekdays = countCertainDays(weekdayArray, checkIn, checkOut);
+
+  const subTotalPrice =
+    place.price *
+    (nweekdays * place.weekday_price + nweekends * place.weekend_price);
+
+  const price = subTotalPrice / (nweekdays + nweekends);
+
+  
+
+  var totalPrice = Math.round(
+    place.price *
+      place.monthwise_season_factor *
+      (nweekdays * place.weekday_price + nweekends * place.weekend_price)
+  );
+
+
+
+  if (numOfNights > 30) {
+    totalPrice = totalPrice * place.monthly_discount;
+  } else if (numOfNights > 7) {
+    totalPrice = totalPrice * place.weekly_discount;
+  }
+
+  const serviceFee = totalPrice - subTotalPrice;
+
+  var discount = 0;
+  
+  // const subTotalPrice = place.price * numOfNights;
+  // const totalPrice = subTotalPrice + subTotalPrice * 0.062542;
 
   let tempDate = new Date(checkIn);
   let noOfWeekends = 0;
 
-  while(tempDate<checkOut){
-    if((tempDate.getDay())===0 || (tempDate.getDay())===5 || (tempDate.getDay())===6 ){
-      noOfWeekends+=1;
-      tempDate.setDate(tempDate.getDate()+1)
- 
-    }else{
-        tempDate.setDate(tempDate.getDate()+1)
+  while (tempDate < checkOut) {
+    if (
+      tempDate.getDay() === 0 ||
+      tempDate.getDay() === 5 ||
+      tempDate.getDay() === 6
+    ) {
+      noOfWeekends += 1;
+      tempDate.setDate(tempDate.getDate() + 1);
+    } else {
+      tempDate.setDate(tempDate.getDate() + 1);
     }
   }
 
-  let weekDays = numOfNights-noOfWeekends;
+  let weekDays = numOfNights - noOfWeekends;
 
-  return homeData.loading ? ( <h1>Loading</h1> ) : homeData.error ? ( <h1>Error</h1> ) :  (
+  return homeData.loading ? (
+    <h1>Loading</h1>
+  ) : homeData.error ? (
+    <h1>Error</h1>
+  ) : (
     <div className="col-lg-5 ps-xl-5">
       <div className="card border-0 shadow">
         <div className="card-body p-4">
@@ -109,7 +154,7 @@ function Card4() {
               <tbody>
                 <tr>
                   <th className="fw-normal py-2">
-                    {numberFormat(place.price)} x {numOfNights} night
+                    {numberFormat(price)} x {numOfNights} night
                   </th>
                   <td className="text-end py-2">
                     {numberFormat(subTotalPrice)}
@@ -118,7 +163,7 @@ function Card4() {
                 <tr>
                   <th className="fw-normal pt-2 pb-3">Service fee</th>
                   <td className="text-end pt-2 pb-3">
-                    {numberFormat(subTotalPrice * 0.062542)}
+                    {numberFormat(serviceFee)}
                   </td>
                 </tr>
               </tbody>

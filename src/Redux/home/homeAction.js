@@ -49,11 +49,11 @@ export const fetchSingleHomeFailure = (error) => {
   };
 };
 
-export const fetchHomes = () => {
+export const fetchHomes = (pageNumber) => {
   return async (dispatch) => {
     dispatch(fetchHomesRequest);
     await axios
-      .get("http://localhost:4000/homes")
+      .get("http://localhost:4000/homes/"+pageNumber.toString())
       .then((response) => {
         const homes = response.data;
         dispatch(fetchHomesSuccess(homes));

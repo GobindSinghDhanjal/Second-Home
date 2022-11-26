@@ -14,6 +14,10 @@ function Card1(props) {
 
   const url=`${props.nextUrl}?title=${props.title}`;
 
+  var price = Math.round(
+    props.price *
+      props.monthwise_season_factor)
+
 
   return (
 
@@ -28,24 +32,7 @@ function Card1(props) {
             />
             {/* <a className="tile-link" href={url}></a> */}
            
-            <div className="card-img-overlay-bottom z-index-20">
-              <div className="d-flex text-white text-sm align-items-center">
-                <img
-                  className="avatar avatar-border-white flex-shrink-0 me-2"
-                  src={props.profileImg}
-                  alt={props.name}
-                />
-                <div>{props.name}</div>
-              </div>
-            </div>
-         
-            <div className="card-img-overlay-top text-end">
-              <Link
-                className="card-fav-icon position-relative z-index-40" to=" "
-              >
-                <i className="fa fa-heart" aria-hidden="true"></i>
-              </Link>
-            </div>
+      
           </div>
   
           </a>
@@ -66,7 +53,7 @@ function Card1(props) {
                 </div>
               </div>
               <p className="card-text text-muted">
-                <span className="h4 text-primary">{numberFormat(props.price)}</span>&nbsp; per night
+                <span className="h4 text-primary">{numberFormat(price)}</span>&nbsp; per night
               </p>
             </div>
           </div>

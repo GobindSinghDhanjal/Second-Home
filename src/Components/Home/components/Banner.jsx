@@ -2,7 +2,7 @@ import React from "react";
 
 function Banner() {
     return(
-    <section className="py-6 bg-gray-100">
+    <section className="py-6">
       <div className="container">
         <div className="text-center pb-lg-4">
           <p className="subtitle text-secondary">One-of-a-kind vacation rentals</p>

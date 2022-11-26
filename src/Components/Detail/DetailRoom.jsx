@@ -69,6 +69,10 @@ function DetailRoom() {
     }).format(value);
 
 
+    var price = Math.round(
+      place.price *
+        place.monthwise_season_factor)
+
   return homeData.loading ? (
     <h1>Loading</h1>
   ) : homeData.error ? (
@@ -188,7 +192,7 @@ function DetailRoom() {
                 {place.location}
               </p>
               <h1>{place.title}</h1>
-              <p className="text-muted text-uppercase mb-4">{place.type} </p>
+              <p className=" text-uppercase mb-4">{place.type} </p>
               <ul className="list-inline text-sm mb-4">
                 <li className="list-inline-item me-3">
                   <i className="fa fa-users me-1 text-secondary"></i>{" "}
@@ -207,39 +211,15 @@ function DetailRoom() {
                   {place.washrooms} bath
                 </li>
               </ul>
-              <p className="text-muted fw-light">{place.description}</p>
-              <h6 className="mb-3">The space</h6>
-              <p className="text-muted fw-light">{place.description2}</p>
-              <p className="text-muted fw-light">Also in the apartment:</p>
-              <ul className="text-muted fw-light">
-                <li>TV with Netflix and DirectTVNow</li>
-                <li>Free WiFi</li>
-                <li>Gourmet Coffee/Tea making supplies</li>
-                <li>Fresh Sheets and Towels</li>
-                <li>
-                  Toaster, microwave, pots and pans and basic cooking needs like
-                  salt, pepper, sugar, and olive oil.
-                </li>
-                <li>Air Conditioning to keep you cool all summer!</li>
-              </ul>
-              <p className="text-muted fw-light">
-                The apartment is surprisingly quiet for being in the heart of a
-                vibrant, bustling neighborhood.
-              </p>
-              <h6 className="mb-3">Interaction with guests</h6>
-              <p className="text-muted fw-light">
-                We live in the two floors above the garden apartment so we are
-                usually available to answer questions. The garden apartment is
-                separate from our living space. We are happy to provide advice
-                on local attractions, restaurants and transportation around the
-                city. If there's anything you need please don't hesitate to ask!
-              </p>
+           {place.description}
+  
+      
             </div>
             <div className="text-block">
               <h4 className="mb-4">Amenities</h4>
               <div className="row">
                 <div className="col-md-6">
-                  <ul className="list-unstyled text-muted">
+                  <ul className="list-unstyled ">
                     <li className="mb-2">
                       {" "}
                       <i className="fa fa-wifi text-secondary w-1rem me-3 text-center"></i>
@@ -263,7 +243,7 @@ function DetailRoom() {
                   </ul>
                 </div>
                 <div className="col-md-6">
-                  <ul className="list-unstyled text-muted">
+                  <ul className="list-unstyled ">
                     <li className="mb-2">
                       {" "}
                       <i className="fa fa-bath text-secondary w-1rem me-3 text-center"></i>
@@ -290,89 +270,20 @@ function DetailRoom() {
             </div>
             <div className="text-block">
               <h4 className="mb-0">Amenities alternative</h4>
-              <p className="subtitle text-sm text-primary mb-4">
+              <p className="subtitle text-sm text-grey-700 mb-4">
                 Alternative amenities display
               </p>
               <ul className="list-inline">
-                <li className="list-inline-item mb-2">
-                  <span className="badge rounded-pill bg-light p-3 text-muted fw-normal">
-                    Wifi
+              {place.amenities.map(amenity=>{
+                return(
+                  <li className="list-inline-item mb-2">
+                  <span className="badge rounded-pill bg-primary p-3  fw-normal">
+                    {amenity}
                   </span>
                 </li>
-                <li className="list-inline-item mb-2">
-                  <span className="badge rounded-pill bg-light p-3 text-muted fw-normal">
-                    Cable TV
-                  </span>
-                </li>
-                <li className="list-inline-item mb-2">
-                  <span className="badge rounded-pill bg-light p-3 text-muted fw-normal">
-                    Air conditioning
-                  </span>
-                </li>
-                <li className="list-inline-item mb-2">
-                  <span className="badge rounded-pill bg-light p-3 text-muted fw-normal">
-                    Heating
-                  </span>
-                </li>
-                <li className="list-inline-item mb-2">
-                  <span className="badge rounded-pill bg-light p-3 text-muted fw-normal">
-                    Toiletteries
-                  </span>
-                </li>
-                <li className="list-inline-item mb-2">
-                  <span className="badge rounded-pill bg-light p-3 text-muted fw-normal">
-                    Equipped Kitchen
-                  </span>
-                </li>
-                <li className="list-inline-item mb-2">
-                  <span className="badge rounded-pill bg-light p-3 text-muted fw-normal">
-                    Desk for work
-                  </span>
-                </li>
-                <li className="list-inline-item mb-2">
-                  <span className="badge rounded-pill bg-light p-3 text-muted fw-normal">
-                    Washing machine
-                  </span>
-                </li>
+                )
+              })}
               </ul>
-            </div>
-            <div className="text-block">
-              <div className="d-flex">
-                <img
-                  className="avatar avatar-lg p-1 flex-shrink-0 me-4"
-                  src={place.profileImg}
-                  alt={place.name}
-                />
-                <div>
-                  <p>
-                    {" "}
-                    <span className="text-muted text-uppercase text-sm">
-                      Hosted by{" "}
-                    </span>
-                    <br />
-                    <strong>{place.name}</strong>
-                  </p>
-                  <p className="text-muted text-sm mb-2">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                    sed do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    Duis aute irure dolor in reprehenderit in voluptate velit
-                    esse cillum dolore.
-                  </p>
-                  <p className="text-muted text-sm">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                    sed do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua.{" "}
-                  </p>
-                  <p className="text-sm">
-                    <a href="/profile">
-                      See {place.name}'s 3 other listings{" "}
-                      <i className="fa fa-long-arrow-alt-right ms-2"></i>
-                    </a>
-                  </p>
-                </div>
-              </div>
             </div>
             <div className="text-block">
               <h5 className="mb-4">Listing location</h5>
@@ -586,9 +497,9 @@ function DetailRoom() {
               className="p-4 shadow ms-lg-4 rounded sticky-top"
               style={{ top: "100px" }}
             >
-              <p className="text-muted">
+              <p className="">
                 <span className="text-primary h2">
-                  {numberFormat(place.price)}
+                  {numberFormat(price)}
                 </span>
                 &nbsp; per night
               </p>
@@ -667,7 +578,7 @@ function DetailRoom() {
                   </button>
                 </div>
               </form>
-              <p className="text-muted text-sm text-center">
+              <p className=" text-sm text-center">
                 Some additional text can be also placed here.
               </p>
               <hr className="my-4" />
@@ -679,7 +590,7 @@ function DetailRoom() {
                     <i className="fa fa-heart"></i> Bookmark This Listing
                   </a>
                 </p>
-                <p className="text-muted text-sm">
+                <p className=" text-sm">
                   79 people bookmarked this place{" "}
                 </p>
               </div>

@@ -1,18 +1,73 @@
-import { TextField } from "@mui/material";
-import React, { useState } from "react";
-import { venues } from "../../shared/data";
+import React, { useEffect, useState } from "react";
 import Header from "../subComponents/Header";
-import LocationMap from "../subComponents/LocationMap";
-import VenueItem from "../subComponents/VenueItem";
-import Neighbour from "./components/Neighbour";
-import SortBy from "./components/SortBy";
-import SubCategory from "./components/SubCategory";
+import Card1 from "../subComponents/Card1";
+import axios from "axios";
+import LoadingButton from "@mui/lab/LoadingButton";
+import MultipleLocationMap from "../subComponents/MultipleLocationMap";
+import { useSearchParams } from "react-router-dom";
 
 function Category() {
-  const [center, setCenter] = useState({
-    lat: 28.535517,
-    lng: 77.391029,
-  });
+
+  const [searchParams] = useSearchParams();
+  // const location = searchParams.get("location");
+
+  const [ location, setLocation] = useState(searchParams.get("location"));
+
+  console.log(location);
+
+
+  const [center, setCenter] = useState([]);
+
+  const [loading, setLoading] = useState(false);
+
+  const [places, setPlaces] = useState([]);
+  const [loadingButton, setLoadingButton] = useState("block");
+
+  const [homePageNumber, setHomePageNumber] = useState(1);
+
+  function handleClick() {
+    setLoading(true);
+    if(places.length >1){
+      setHomePageNumber(homePageNumber + 1);
+    }
+  
+    setLoading(false);
+
+  }
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:4000/homes/" +location+"/"+ homePageNumber.toString())
+      .then((response) => {
+        if (response.data.length < 1) {
+          setLoading(false);
+          setLoadingButton("none");
+          return;
+        }
+
+       
+
+        const arr = places.concat(response.data);
+        setPlaces(arr);
+     
+
+        if (arr.length > 0) {
+        
+          const mapArr = arr.map((place) => {
+            return {
+              lat: place.coordinates.latitude,
+              lng: place.coordinates.longitude,
+            };
+          });
+          setCenter(mapArr);
+        }
+      })
+      .catch((error) => {
+        const errorMsg = error.message;
+        console.log(errorMsg);
+      });
+  }, [homePageNumber, loadingButton]);
+
   return (
     <div>
       <Header />
@@ -22,12 +77,12 @@ function Category() {
       <div className="container-fluid">
         <div className="row">
           <div className="col-lg-6 py-5 p-xl-5">
-            <h1 className="text-serif mb-4">Eat in Manhattan, NY</h1>
-            <hr className="my-4" />
-            <form action="#">
+            {/* <h1 className="text-serif mb-4">Eat in Manhattan, NY</h1>
+            <hr className="my-4" /> */}
+            {/* <form action="#">
               <div className="row">
                 <div className="col-xl-4 col-md-6 mb-4">
-                  {/* <label className="form-label" for="form_search">Keyword</label> */}
+          
                   <div className="input-label-absolute input-label-absolute-right">
                     <div className="label-absolute">
                       <i className="fa fa-search"></i>
@@ -301,83 +356,47 @@ function Category() {
                   </button>
                 </div>
               </div>
-            </form>
-            <hr className="my-4" />
-            <div className="d-flex justify-content-between align-items-center flex-column flex-md-row mb-4">
-              <div className="me-3">
-                <p className="mb-3 mb-md-0">
-                  <strong>{venues.length}</strong> results found
-                </p>
-              </div>
-              <div>
-                <SortBy />
-                {/* <label className="form-label me-2" for="form_sort">Sort by</label>
-                                <select className="selectpicker" name="sort" id="form_sort" data-style="btn-selectpicker" title="">
-                                    <option value="sortBy_0">Most popular   </option>
-                                    <option value="sortBy_1">Recommended   </option>
-                                    <option value="sortBy_2">Newest   </option>
-                                    <option value="sortBy_3">Oldest   </option>
-                                    <option value="sortBy_4">Closest   </option>
-                                </select> */}
-              </div>
-            </div>
+            </form> */}
+            {/* <hr className="my-4" /> */}
             <div className="row">
-                        {/* <!-- venue item--> */}
-                        {venues.map((venue) => {
-              return (
-                <div
-                className="col-sm-6 mb-5 hover-animate"
-                data-marker-id="59c0c8e39aa2edasd626e485d"
-              >
-                  <VenueItem
-                    name={venue.name}
-                    type={venue.type}
-                    imgUrl={venue.imgUrl}
-                    title={venue.title}
-                    rating={venue.rating}
-                    moreTypes={venue.moreTypes}
-                    description={venue.description}
-                  />
-                </div>
-              );
-            })}
+
+              {places.map((place, i) => {
+                return (
+                  <div
+                    className="col-sm-6 mb-5 hover-animate"
+                    data-marker-id="59c0c8e39aa2edasd626e485d"
+                  >
+                    <Card1
+                      key={i}
+                      id={place._id}
+                      name={place.name}
+                      nextUrl="/detail-room"
+                      title={place.title}
+                      placeImg={place.placeImg}
+                      profileImg={place.profileImg}
+                      type={place.type}
+                      price={place.price}
+                      monthwise_season_factor={place.monthwise_season_factor}
+                      rating={place.rating}
+                    />
+                  </div>
+                );
+              })}
             </div>
             {/* <!-- Pagination --> */}
-            <nav aria-label="Page navigation example">
-              <ul className="pagination pagination-template d-flex justify-content-center">
-                <li className="page-item">
-                  <a className="page-link" href="#">
-                    {" "}
-                    <i className="fa fa-angle-left"></i>
-                  </a>
-                </li>
-                <li className="page-item active">
-                  <a className="page-link" href="#">
-                    1
-                  </a>
-                </li>
-                <li className="page-item">
-                  <a className="page-link" href="#">
-                    2
-                  </a>
-                </li>
-                <li className="page-item">
-                  <a className="page-link" href="#">
-                    3
-                  </a>
-                </li>
-                <li className="page-item">
-                  <a className="page-link" href="#">
-                    {" "}
-                    <i className="fa fa-angle-right"></i>
-                  </a>
-                </li>
-              </ul>
-            </nav>
+            <LoadingButton
+              onClick={handleClick}
+              loading={loading}
+              loadingIndicator="Loading…"
+              style={{ display: loadingButton }}
+            >
+              Load More
+            </LoadingButton>
+            {loadingButton === "none" ? <p>No more properties</p> : null}
           </div>
           <div className="col-lg-6 map-side-lg px-lg-0">
             <div className="map-full shadow-right" id="categorySideMap">
-            <LocationMap zoom={15} center={center}/>
+              <MultipleLocationMap zoom={5} center={center} />
             </div>
           </div>
         </div>

@@ -21,7 +21,7 @@ function Banner3() {
             <h2>Last minute deals</h2>
           </div>
           <div className="col-md-4 d-lg-flex align-items-center justify-content-end">
-            <Link className="text-muted text-sm" to="/category-1">
+            <Link className="text-muted text-sm" to="/category">
               See all deals<i className="fas fa-angle-double-right ms-2"></i>
             </Link>
           </div>

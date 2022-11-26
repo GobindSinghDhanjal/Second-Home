@@ -13,9 +13,9 @@ import { fetchHomes } from "../../Redux";
 
 function Home() {
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchHomes());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(fetchHomes());
+  // }, []);
 
 
   return (
@@ -23,8 +23,9 @@ function Home() {
       <Header />
       <Herohome2 />
       <Banner />
-      <Banner2 />
       <Banner3 />
+      <Banner2 />
+
       <Banner4 />
       <Banner5 />
       <Banner6 />

@@ -74,12 +74,12 @@ function Herohome2() {
             <div className="search-bar mt-5 p-4 p-lg-1 ps-lg-4">
               <form onSubmit={onSearch}>
                 <div className="row">
-                  <div className="col-lg-4 d-flex align-items-center form-group">
+                  <div className="col-lg-4 d-flex align-items-center form-group no-divider">
                     <div className="input-label-absolute input-label-absolute-right w-100">
-                      <label className="label-absolute" htmlFor="location">
+                      {/* <label className="label-absolute" htmlFor="location">
                         <i className="fa fa-crosshairs"></i>
                         <span className="sr-only">City</span>
-                      </label>
+                      </label> */}
                       {/* <input
                         className="form-control border-0 shadow-0"
                         type="text"
@@ -93,12 +93,9 @@ function Herohome2() {
                         disablePortal
                         id="combo-box-demo"
                         options={cities}
-                        sx={{ width: 300, border: "none" }}
-                        
                         renderInput={(params) => (
                           <TextField
                             value={location}
-                            sx={{ border: "none" }}
                             onChange={(e) => setLocation(e.target.value)}
                             {...params}
                             label="Location"

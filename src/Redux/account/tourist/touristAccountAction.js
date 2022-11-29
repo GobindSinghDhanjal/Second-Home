@@ -6,6 +6,7 @@ import {
 
 import axios from "axios";
 import { ReactSession } from "react-client-session";
+import { backendUrl } from "../../../shared/backendUrl";
 
 export const fetchAccountRequest = () => {
   return {
@@ -32,7 +33,7 @@ export const fetchTourist = () => {
     dispatch(fetchAccountRequest);
 
     const username = ReactSession.get("username");
-    const url = "http://localhost:4000/user/tourist/" + username;
+    const url = backendUrl+"/user/tourist/" + username;
     axios
       .get(url)
       .then((response) => {

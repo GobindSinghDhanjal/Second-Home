@@ -4,6 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import Card1 from "./Card1";
 import axios from "axios";
+import { backendUrl } from "../../shared/backendUrl";
 
 function Card1Group() {
 
@@ -14,7 +15,7 @@ function Card1Group() {
     useEffect(()=>{
 
       axios
-      .get("http://localhost:4000/featuredHomes")
+      .get(backendUrl+"/featuredHomes")
       .then((response) => {
         setHomes(response.data);
       })
@@ -31,20 +32,20 @@ function Card1Group() {
         className="pb-2"
         breakpoints={{
           0: { slidesPerView: 1, spaceBetween: 30 },
-          500: { slidesPerView: 1.3, spaceBetween: 30 },
-          750: { slidesPerView: 2, spaceBetween: 30 },
-          900: { sliderPerView: 3.5, spaceBetween: 30 },
+          550: { slidesPerView: 1.5, spaceBetween: 30 },
+          950: { slidesPerView: 2.2, spaceBetween: 30 },
+          1200: { sliderPerView: 2.8, spaceBetween: 30 },
         }}
         centeredSlides
         centeredSlidesBounds
-        slidesPerView={3.5}
+        slidesPerView={3.3}
       >
         {homes.map((place, i) => {
           return (
             <SwiperSlide key={i}>
               <div
                 key={i}
-                className="swiper-slide h-auto px-2"
+                className=" h-auto px-2"
                 style={{
                   width: "344px",
                   marginRight: "20px",

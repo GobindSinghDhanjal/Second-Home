@@ -8,6 +8,7 @@ import {
 } from "./homeTypes";
 
 import axios from "axios";
+import { backendUrl } from "../../shared/backendUrl";
 
 export const fetchHomesRequest = () => {
   return {
@@ -53,7 +54,7 @@ export const fetchHomes = (pageNumber) => {
   return async (dispatch) => {
     dispatch(fetchHomesRequest);
     await axios
-      .get("http://localhost:4000/homes/"+pageNumber.toString())
+      .get(backendUrl+"/homes/"+pageNumber.toString())
       .then((response) => {
         const homes = response.data;
         dispatch(fetchHomesSuccess(homes));
@@ -69,7 +70,7 @@ export const fetchSingleHome = (title) => {
   return (dispatch) => {
     dispatch(fetchSingleHomeRequest);
     axios
-      .get(`http://localhost:4000/home/${title}`)
+      .get(`${backendUrl}/home/${title}`)
       .then((response) => {
           const home = response.data;
           dispatch(fetchSingleHomeSuccess(home));

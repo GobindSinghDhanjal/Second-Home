@@ -1,6 +1,6 @@
 import React from "react";
 import Rating from "./Rating";
-import {Link} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 
 function Card1(props) {
 
@@ -22,7 +22,8 @@ function Card1(props) {
   return (
 
         <div className="card h-100 border-0 shadow" >
-        <a href={url}>
+        {/* <a href={url}> */}
+        <Link to={url} >
           <div className="card-img-top overflow-hidden gradient-overlay">
             {" "}
             <img
@@ -34,8 +35,8 @@ function Card1(props) {
            
       
           </div>
-  
-          </a>
+          </Link>
+          {/* </a> */}
           <div className="card-body d-flex align-items-center" >
             <div className="w-100">
               <h6 className="card-title" style={{minHeight: "45px"}}>

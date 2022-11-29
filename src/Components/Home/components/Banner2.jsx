@@ -22,13 +22,14 @@ function Banner2() {
 
          breakpoints={{
         0: { slidesPerView: 1, spaceBetween: 20},
-        500: { slidesPerView: 2, spaceBetween: 20},
-        750: { slidesPerView: 3, spaceBetween: 20},
-        900: {sliderPerView: 5, spaceBetween: 20}
+        600: { slidesPerView: 2.2, spaceBetween: 20},
+        940: {sliderPerView: 2.9, spaceBetween: 20},
+        1100: {sliderPerView: 3.5, spaceBetween: 20},
       }}
       centeredSlides
       centeredSlidesBounds
-      slidesPerView={5}
+      slidesPerView={4.5}
+      spaceBetween={10}
 
         >
 
@@ -40,7 +41,7 @@ function Banner2() {
                     <SwiperSlide key={i}>
                 <div
                   key={i}
-                  className="swiper-slide h-auto px-2"
+                  className="h-auto px-2"
                   style={{width: "250px", margin:"auto"}}
                 >
                     <Card5 name={guide.name} imgUrl={guide.imgUrl} description={guide.description}/>

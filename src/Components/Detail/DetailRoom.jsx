@@ -25,6 +25,8 @@ function DetailRoom() {
   const [searchParams] = useSearchParams();
   const title = searchParams.get("title");
 
+  const[title2, setTitle] = useState(searchParams.get("title"));
+
   const navigate = useNavigate();
 
   const homeData = useSelector((state) => state.homes);
@@ -34,6 +36,9 @@ function DetailRoom() {
   useEffect(() => {
     dispatch(fetchSingleHome(title));
     dispatch(fetchHomes());
+    console.log(title2);
+    setTitle(searchParams.get("title"));
+    console.log(title2);
   }, [dispatch]);
 
   const today = new Date();

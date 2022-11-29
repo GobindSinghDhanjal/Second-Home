@@ -8,6 +8,7 @@ import {
 } from "./touristTypes";
 import axios from "axios";
 import { ReactSession }  from 'react-client-session';
+import { backendUrl } from "../../../shared/backendUrl";
 
 
 export const registerTouristRequest = () => {
@@ -61,7 +62,7 @@ export const registerTourist = (postData) => {
     params.append("password", postData.password);
 
     axios
-      .post("http://localhost:4000/user/tourist", params)
+      .post(backendUrl+"/user/tourist", params)
       .then((response) => {
         const tourist = response.data;
         dispatch(registerTouristSuccess(tourist));
@@ -88,7 +89,7 @@ export const loginTourist = (postData) => {
     params.append("password", postData.password);
 
     axios
-      .post("http://localhost:4000/login/tourist", params)
+      .post(backendUrl+"/login/tourist", params)
       .then((response) => {
         const tourist = response.data;
         const token = response.data.token;

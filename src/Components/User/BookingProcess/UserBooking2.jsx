@@ -4,7 +4,7 @@ import Card4 from "../../subComponents/Card4";
 import Header from "../../subComponents/Header";
 import axios from "axios";
 import LoadingButton from "@mui/lab/LoadingButton";
-
+import { backendUrl } from "../../../shared/backendUrl";
 import { Button, TextField } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSingleHome } from "../../../Redux";
@@ -107,7 +107,7 @@ function UserBooking2() {
 
     // creating a new order
     const result = await axios
-      .post("http://localhost:4000/payment/orders", params)
+      .post(backendUrl+"/payment/orders", params)
       .catch((err) => {
         console.log(err);
       });
@@ -138,7 +138,7 @@ function UserBooking2() {
         };
 
         const result = await axios.post(
-          "http://localhost:4000/payment/success",
+          backendUrl+"/payment/success",
           data
         );
 

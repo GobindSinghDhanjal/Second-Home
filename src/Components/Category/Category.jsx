@@ -5,6 +5,7 @@ import axios from "axios";
 import LoadingButton from "@mui/lab/LoadingButton";
 import MultipleLocationMap from "../subComponents/MultipleLocationMap";
 import { useSearchParams } from "react-router-dom";
+import { backendUrl } from "../../shared/backendUrl";
 
 function Category() {
 
@@ -37,15 +38,13 @@ function Category() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:4000/homes/" +location+"/"+ homePageNumber.toString())
+      .get(backendUrl+"/homes/" +location+"/"+ homePageNumber.toString())
       .then((response) => {
         if (response.data.length < 1) {
           setLoading(false);
           setLoadingButton("none");
           return;
         }
-
-       
 
         const arr = places.concat(response.data);
         setPlaces(arr);

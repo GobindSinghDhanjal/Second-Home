@@ -9,6 +9,7 @@ import {
 
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
+import { backendUrl } from "../../shared/backendUrl";
 
 export const fetchBookingsRequest = () => {
   return {
@@ -57,7 +58,7 @@ export const fetchBookings = (tourist) => {
     const touristEmail = tourist.email;
 
     await axios
-      .post("http://localhost:4000/all-bookings", { touristEmail })
+      .post(backendUrl+"/all-bookings", { touristEmail })
       .then((response) => {
         const bookings = response.data;
         dispatch(fetchBookingsSuccess(bookings));
@@ -77,7 +78,7 @@ export const fetchSingleBooking = (postData) => {
       const bookingId = postData.bookingId;
 
       await axios
-        .post("http://localhost:4000/booking-detail", { touristEmail,bookingId })
+        .post(backendUrl+"/booking-detail", { touristEmail,bookingId })
         .then((response) => {
           const booking = response.data;
           dispatch(fetchSingleBookingSuccess(booking));

@@ -24,8 +24,8 @@ function Header() {
           <div className="d-flex align-items-center">
             <Link className="navbar-brand py-1" to="/">
               <img
-              className="logo-img"
-                src={process.env.PUBLIC_URL+"/AlohaLogo.png"}
+                className="logo-img"
+                src={process.env.PUBLIC_URL + "/AlohaLogo.png"}
                 alt="Directory logo"
               />
             </Link>
@@ -87,32 +87,32 @@ function Header() {
             <ul className="navbar-nav ms-auto">
               <li className="nav-item dropdown">
                 <Link
-                  className="nav-link dropdown-toggle active"
+                  className="nav-link active"
                   id="homeDropdownMenuLink"
                   to="/"
-                  data-bs-toggle="dropdown"
+                  // data-bs-toggle="dropdown"
                 >
                   Home
                 </Link>
-                <div
+                {/* <div
                   className="dropdown-menu"
                   aria-labelledby="homeDropdownMenuLink"
                 >
                   <Link className="dropdown-item" to="/real-estate">
                     Real Estate
                   </Link>
-                </div>
+                </div> */}
               </li>
 
               <li className="nav-item dropdown position-static">
                 <Link
-                  className="nav-link dropdown-toggle"
-                  to="/"
-                  data-bs-toggle="dropdown"
+                  className="nav-link"
+                  to="/category?location=All"
+                  // data-bs-toggle="dropdown"
                 >
                   Second Home
                 </Link>
-                <div
+                {/* <div
                   className="dropdown-menu megamenu py-lg-0"
                   style={{ marginTop: "-30px" }}
                 >
@@ -146,7 +146,7 @@ function Header() {
                               </Link>
                             </li>
                           </ul>
-                          {/* <!-- Megamenu list--> */}
+                      
                           <h6 className="text-uppercase">Blog</h6>
                           <ul className="megamenu-list list-unstyled">
                             <li className="megamenu-list-item">
@@ -162,7 +162,7 @@ function Header() {
                           </ul>
                         </div>
                         <div className="col-lg-3">
-                          {/* <!-- Megamenu list--> */}
+                         
                           <h6 className="text-uppercase">Pages</h6>
                           <ul className="megamenu-list list-unstyled">
                             <li className="megamenu-list-item">
@@ -239,7 +239,7 @@ function Header() {
                               <li className="megamenu-list-item">
                                 <Link className="megamenu-list-link">
                                   <LoginButton />
-                                  {/* Sign in{" "} */}
+                                 
                                 </Link>
                               </li>
                             )}
@@ -354,8 +354,16 @@ function Header() {
                       />
                     </div>
                   </div>
-                </div>
+                </div> */}
               </li>
+
+              {isAuthenticated ? (
+                <li className="nav-item">
+                  <Link className="nav-link" to="/all-bookings">
+                    Bookings
+                  </Link>
+                </li>
+              ) : null}
 
               <li className="nav-item">
                 <Link className="nav-link" to="/contact">

@@ -17,6 +17,7 @@ function Card1(props) {
   var price = Math.round(
     props.price *
       props.monthwise_season_factor)
+      
 
 
   return (
@@ -40,8 +41,8 @@ function Card1(props) {
           <div className="card-body d-flex align-items-center" >
             <div className="w-100">
               <h6 className="card-title" style={{minHeight: "45px"}}>
- 
-                <a className="text-decoration-none text-dark" href={url}> {props.title}</a>
+              <Link className="text-decoration-none text-dark" to={url} > {props.title}</Link>
+                {/* <a className="text-decoration-none text-dark" href={url}> {props.title}</a> */}
  
               </h6>
               <div className="d-flex card-subtitle mb-3">

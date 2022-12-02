@@ -6,6 +6,8 @@ import Card4 from "../../subComponents/Card4";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSingleHome } from "../../../Redux";
 import { Link } from "react-router-dom";
+import LoadingProgress from "../../subComponents/LoadingProgress";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function UserBooking1() {
   //////////////   FINDING GUEST   ////////////////
@@ -29,13 +31,22 @@ function UserBooking1() {
 
   const url = "/user-booking-2?title="+title+"&guest="+guest+"&checkIn="+checkIn+"&checkOut="+checkOut;
 
-  return homeData.loading ? ( <h1>Loading</h1> ) : homeData.error ? ( <h1>Error</h1> ) : (
+  const {isLoading } = useAuth0();
+
+  if (isLoading) {
+    return (
+      <LoadingProgress />
+    )
+  }
+
+  return homeData.loading ? ( <LoadingProgress /> ) : homeData.error ? ( <h1>Error</h1> ) : (
     <div>
       <Header />
       <br />
       <br />
+      <br />
       <div
-        className="progress rounded-0 sticky-top"
+        className="progress rounded-0 sticky-top mt-1"
         style={{ height: "8px", top: "72px" }}
       >
         <div
@@ -55,7 +66,7 @@ function UserBooking1() {
               <h1 className="h2 mb-5">
                 {" "}
                 Review house rules{" "}
-                <span className="text-muted float-end">Step 1</span>{" "}
+                {/* <span className="text-muted float-end">Step 1</span>{" "} */}
               </h1>
               <div className="text-block">
                 <div className="alert alert-warning text-sm mb-3">

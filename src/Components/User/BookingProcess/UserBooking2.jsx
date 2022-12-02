@@ -8,8 +8,9 @@ import { backendUrl } from "../../../shared/backendUrl";
 import { Button, TextField } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSingleHome } from "../../../Redux";
-import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth0, User } from "@auth0/auth0-react";
 import { Link } from "react-router-dom";
+import LoadingProgress from "../../subComponents/LoadingProgress";
 
 function UserBooking2() {
   const { user, isAuthenticated, isLoading, loginWithPopup } = useAuth0();
@@ -149,13 +150,13 @@ function UserBooking2() {
         }
       },
       prefill: {
-        name: "Soumya Dey",
-        email: "SoumyaDey@example.com",
-        contact: "9999999999",
+        // name: "Soumya Dey",
+        email: user.email,
+        // contact: "9999999999",
       },
-      notes: {
-        address: "Soumya Dey Corporate Office",
-      },
+      // notes: {
+      //   address: "",
+      // },
       theme: {
         color: "#61dafb",
       },
@@ -166,13 +167,21 @@ function UserBooking2() {
     paymentObject.open();
   }
 
+
+  if (isLoading) {
+    return (
+      <LoadingProgress />
+    )
+  }
+
   return (
     <div>
       <Header />
       <br />
       <br />
+      <br/>
       <div
-        className="progress rounded-0 sticky-top"
+        className="progress rounded-0 sticky-top mt-1"
         style={{ height: "8px", top: "72px" }}
       >
         <div
@@ -192,7 +201,7 @@ function UserBooking2() {
               <h1 className="h2 mb-5">
                 {" "}
                 Who's coming?{" "}
-                <span className="text-muted float-end">Step 2</span>{" "}
+                
               </h1>
               <div className="text-block">
                 <div className="alert alert-warning text-sm mb-3">

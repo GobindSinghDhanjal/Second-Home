@@ -10,6 +10,9 @@ import Banner6 from "./components/Banner6";
 import Banner7 from "./components/Banner7";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchHomes } from "../../Redux";
+import { useAuth0 } from "@auth0/auth0-react";
+import { CircularProgress } from "@mui/material";
+import LoadingProgress from "../subComponents/LoadingProgress";
 
 function Home() {
   const dispatch = useDispatch();
@@ -17,6 +20,13 @@ function Home() {
   //   dispatch(fetchHomes());
   // }, []);
 
+  const { user, isAuthenticated, isLoading } = useAuth0();
+
+  if (isLoading) {
+    return (
+      <LoadingProgress />
+    )
+  }
 
   return (
     <div>

@@ -6,16 +6,18 @@ import LoadingButton from "@mui/lab/LoadingButton";
 import MultipleLocationMap from "../subComponents/MultipleLocationMap";
 import { useSearchParams } from "react-router-dom";
 import { backendUrl } from "../../shared/backendUrl";
+import { useAuth0 } from "@auth0/auth0-react";
+import LoadingProgress from "../subComponents/LoadingProgress";
 
 function Category() {
-
   const [searchParams] = useSearchParams();
   // const location = searchParams.get("location");
 
-  const [ location, setLocation] = useState(searchParams.get("location"));
+  const [location, setLocation] = useState(searchParams.get("location"));
 
-  console.log(location);
+  // console.log(location);
 
+  const { isLoading } = useAuth0();
 
   const [center, setCenter] = useState([]);
 
@@ -28,30 +30,30 @@ function Category() {
 
   function handleClick() {
     setLoading(true);
-    if(places.length >1){
+    console.log(places.length);
+    if (places.length > 1) {
       setHomePageNumber(homePageNumber + 1);
     }
-  
-    setLoading(false);
 
+    setLoading(false);
   }
 
   useEffect(() => {
     axios
-      .get(backendUrl+"/homes/" +location+"/"+ homePageNumber.toString())
+      .get(backendUrl + "/homes/" + location + "/" + homePageNumber.toString())
       .then((response) => {
         if (response.data.length < 1) {
           setLoading(false);
           setLoadingButton("none");
+    
           return;
         }
+       
 
         const arr = places.concat(response.data);
         setPlaces(arr);
-     
 
         if (arr.length > 0) {
-        
           const mapArr = arr.map((place) => {
             return {
               lat: place.coordinates.latitude,
@@ -66,6 +68,10 @@ function Category() {
         console.log(errorMsg);
       });
   }, [homePageNumber, loadingButton]);
+
+  if (isLoading) {
+    return <LoadingProgress />;
+  }
 
   return (
     <div>
@@ -358,7 +364,6 @@ function Category() {
             </form> */}
             {/* <hr className="my-4" /> */}
             <div className="row">
-
               {places.map((place, i) => {
                 return (
                   <div
@@ -391,9 +396,11 @@ function Category() {
             >
               Load More
             </LoadingButton>
-            {loadingButton === "none" ? <p>No more properties</p> : null}
+            {loadingButton === "none" ? (
+              <p className="m-6 text-center">No more properties</p>
+            ) : null}
           </div>
-          <div className="col-lg-6 map-side-lg px-lg-0">
+          <div className="col-lg-6 mb-md-auto mb-5 map-side-lg px-lg-0">
             <div className="map-full shadow-right" id="categorySideMap">
               <MultipleLocationMap zoom={5} center={center} />
             </div>

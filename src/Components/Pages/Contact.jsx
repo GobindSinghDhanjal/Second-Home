@@ -180,8 +180,8 @@ function Contact() {
                   <div className="row">
                   <div className="col-sm-6">
                   <div className="mb-4">
-                    <label className="form-label" htmlFor="email">
-                      Your email *
+                    <label className="form-label" htmlFor="phone">
+                      Your phone *
                     </label>
                     <input
                       required

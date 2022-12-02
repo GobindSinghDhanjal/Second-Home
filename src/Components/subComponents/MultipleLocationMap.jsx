@@ -5,6 +5,8 @@ import L from "leaflet";
 import icon from "leaflet/dist/images/marker-icon.png";
 import iconShadow from "leaflet/dist/images/marker-shadow.png";
 import { useState } from "react";
+import CircularProgress from "@mui/material/CircularProgress";
+import LoadingProgress from "./LoadingProgress";
 
 let DefaultIcon = L.icon({
   iconUrl: icon,
@@ -14,21 +16,25 @@ let DefaultIcon = L.icon({
 L.Marker.prototype.options.icon = DefaultIcon;
 
 function MultipleLocationMap(props) {
-
-  return !(props.center[0])?(<div>Loading</div>):(
+  return !props.center[0] ? (
+    <div className="m-7 text-center">
+      <CircularProgress />
+    </div>
+  ) : (
     <MapContainer
-    center={props.center[0]}
+      center={props.center[0]}
       zoom={props.zoom}
       scrollWheelZoom={true}
     >
       <TileLayer
         // url={"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"}
-        url={"https://api.maptiler.com/maps/basic-v2/256/{z}/{x}/{y}.png?key=IMBxDRtRVWm5cCGy2jmp"}
+        url={
+          "https://api.maptiler.com/maps/basic-v2/256/{z}/{x}/{y}.png?key=IMBxDRtRVWm5cCGy2jmp"
+        }
       />
-      {props.center.map((center,i)=>{
-        return (<Marker key={i} position={center}></Marker>)
+      {props.center.map((center, i) => {
+        return <Marker key={i} position={center}></Marker>;
       })}
-      
     </MapContainer>
   );
 }

@@ -54,7 +54,7 @@ export const fetchHomes = (pageNumber) => {
   return async (dispatch) => {
     dispatch(fetchHomesRequest);
     await axios
-      .get(backendUrl+"/homes/"+pageNumber.toString())
+      .get(backendUrl+"/homes/"+pageNumber)
       .then((response) => {
         const homes = response.data;
         dispatch(fetchHomesSuccess(homes));

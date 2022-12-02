@@ -10,6 +10,7 @@ import { Navigation } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import LocationMap from "../subComponents/LocationMap";
+import LoadingProgress from "../subComponents/LoadingProgress";
 
 function BookingDetails() {
 
@@ -37,9 +38,9 @@ function BookingDetails() {
   }, [dispatch, bookingId, user]);
 
   return isLoading ? (
-    <div>Loading</div>
+    <LoadingProgress />
   ) : bookingData.loading ? (
-    <div>Loading</div>
+    <LoadingProgress />
   ) : bookingData.error ? (
     <div>Error</div>
   ) : (

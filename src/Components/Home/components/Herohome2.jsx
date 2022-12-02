@@ -90,14 +90,17 @@ function Herohome2() {
                         onChange={e=>setLocation(e.target.value)}
                       /> */}
                       <Autocomplete
-                        disablePortal
+                        freeSolo
                         id="combo-box-demo"
                         options={cities}
+                        onChange={(e, newValue) => {
+                          setLocation(newValue.label);
+                        }}
                         renderInput={(params) => (
                           <TextField
+                            {...params}
                             value={location}
                             onChange={(e) => setLocation(e.target.value)}
-                            {...params}
                             label="Location"
                           />
                         )}
@@ -108,6 +111,7 @@ function Herohome2() {
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                       <DatePicker
                         label="Check In"
+                        required
                         className="datetime-picker-mobile"
                         inputFormat="DD MMM YYYY"
                         disableMaskedInput
@@ -116,7 +120,9 @@ function Herohome2() {
                         onChange={(newValue) => {
                           setCheckIn(newValue);
                         }}
-                        renderInput={(params) => <TextField {...params} />}
+                        renderInput={(params) => (
+                          <TextField required {...params} />
+                        )}
                       />
                     </LocalizationProvider>
                   </div>
@@ -128,6 +134,7 @@ function Herohome2() {
                       <DatePicker
                         label="Check Out"
                         value={checkOut}
+                        required
                         className="datetime-picker-mobile"
                         inputFormat="DD MMM YYYY"
                         disableMaskedInput
@@ -136,7 +143,9 @@ function Herohome2() {
                         onChange={(newValue) => {
                           setCheckOut(newValue);
                         }}
-                        renderInput={(params) => <TextField {...params} />}
+                        renderInput={(params) => (
+                          <TextField required {...params} />
+                        )}
                       />
                     </LocalizationProvider>
                   </div>

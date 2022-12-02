@@ -6,6 +6,7 @@ import { fetchBookings } from "../../Redux/bookings/bookingAction";
 import { allBookings } from "../../shared/data";
 import Card3 from "../subComponents/Card3";
 import Header from "../subComponents/Header";
+import LoadingProgress from "../subComponents/LoadingProgress";
 
 function AllBookings() {
   const { user, isAuthenticated, isLoading } = useAuth0();
@@ -22,9 +23,9 @@ function AllBookings() {
   }, [dispatch, user]);
 
   return isLoading ? (
-    <div>Loading</div>
+    <LoadingProgress/>
   ) : bookingData.loading ? (
-    <div>Loading</div>
+    <LoadingProgress />
   ) : (
     <div>
       <Header />

@@ -1,15 +1,27 @@
+import { useAuth0 } from "@auth0/auth0-react";
 import React from "react";
 import Card4 from "../../subComponents/Card4";
 import Header from "../../subComponents/Header";
+import LoadingProgress from "../../subComponents/LoadingProgress";
 
 function UserBooking4() {
+
+  const { isLoading } = useAuth0();
+
+  if (isLoading) {
+    return (
+      <LoadingProgress />
+    )
+  }
+
   return (
     <div>
       <Header />
       <br />
       <br />
+      <br />
       <div
-        className="progress rounded-0 sticky-top"
+        className="progress rounded-0 sticky-top mt-1"
         style={{ height: "8px", top: "72px" }}
       >
         <div
@@ -29,7 +41,6 @@ function UserBooking4() {
               <h1 className="h2 mb-5">
                 {" "}
                 Booking placed{" "}
-                <span className="text-muted float-end">Step 3</span>{" "}
               </h1>
               <div className="text-block">
                 <p className="text-muted">
@@ -43,7 +54,7 @@ function UserBooking4() {
                 <p className="text-center mb-5">
                   <a
                     className="btn btn-primary mx-2 mb-2"
-                    href="/booking-details"
+                    href="/all-bookings"
                   >
                     {" "}
                     <i className="far fa-file me-2"></i>View your order

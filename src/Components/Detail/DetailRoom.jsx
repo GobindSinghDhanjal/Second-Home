@@ -19,6 +19,7 @@ import { useNavigate } from "react-router-dom";
 import LocationMap from "../subComponents/LocationMap";
 import Delayed from "../subComponents/Delayed";
 import Card1Group from "../subComponents/Card1Group";
+import LoadingProgress from "../subComponents/LoadingProgress";
 
 function DetailRoom() {
 
@@ -36,10 +37,9 @@ function DetailRoom() {
   useEffect(() => {
     dispatch(fetchSingleHome(title));
     dispatch(fetchHomes());
-    console.log(title2);
     setTitle(searchParams.get("title"));
-    console.log(title2);
-  }, [dispatch]);
+    window.scrollTo(0, 0);
+  }, [dispatch,searchParams,title, title2]);
 
   const today = new Date();
   var nextDay = new Date();
@@ -79,15 +79,14 @@ function DetailRoom() {
         place.monthwise_season_factor)
 
   return homeData.loading ? (
-    <h1>Loading</h1>
+    <LoadingProgress/>
   ) : homeData.error ? (
     <h1>Error</h1>
-  ) : !place ?(<div>Loading</div>):
-  !(place.coordinates)?(<div>Loading</div>) :(
+  ) : !place ?(<LoadingProgress/>):
+  !(place.coordinates)?(<LoadingProgress/>) :(
     <Delayed waitBeforeShow={200}>
     <div>
-  
-      {console.log(homeData)}
+
       <Header key="" />
       <br />
       <br />
@@ -279,10 +278,10 @@ function DetailRoom() {
                 Alternative amenities display
               </p>
               <ul className="list-inline">
-              {place.amenities.map(amenity=>{
+              {place.amenities.map((amenity,i)=>{
                 return(
-                  <li className="list-inline-item mb-2">
-                  <span className="badge rounded-pill bg-primary p-3  fw-normal">
+                  <li key={i} className="list-inline-item mb-2">
+                  <span key={i} className="badge rounded-pill bg-primary p-3  fw-normal">
                     {amenity}
                   </span>
                 </li>
